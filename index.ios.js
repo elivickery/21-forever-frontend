@@ -4,27 +4,42 @@
  * @flow
  */
 
+'use strict';
 import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Button
 } from 'react-native';
+import {
+  StackNavigator,
+} from 'react-navigation';
 
-export default class make_it_happen_frontend extends Component {
+import Login from './login';
+import Register from './register';
+import Home from './home';
+import Root from './root';
+
+const App = StackNavigator({
+  Home: { screen: Root },
+  Login: { screen: Login },
+  Register: { screen: Register },
+
+});
+
+class make_it_happen_frontend extends Component {
+
+  static navigationOptions = {
+      title: 'Welcome',
+    };
+
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
+          Make It Happen
         </Text>
       </View>
     );
