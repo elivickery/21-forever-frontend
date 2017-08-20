@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, List, FlatList, StyleSheet } from 'react-native'
 import Days from './Days'
 import axios from 'axios'
 
@@ -77,11 +77,31 @@ export default class MainPage extends Component {
           MainPage
         </Text>
           <Days />
-        <Text>
+        <Text style={styles.centeredgoals}>
           Achieved Goals
         </Text>
-        {this.state.goals.map}
+          <FlatList
+            data={this.state.goals}
+            renderItem={({ item }) =>
+              <Text style={styles.row}>{item.title}</Text>
+            }
+          />
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  centeredgoals: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 20,
+    justifyContent:'center',
+    marginBottom: 10
+  },
+  row: {
+    backgroundColor: '#f4f4f4',
+    fontSize: 15,
+    color: '#696969'
+  }
+})
