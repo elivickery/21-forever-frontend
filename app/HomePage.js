@@ -10,17 +10,20 @@ import {
 } from 'react-navigation';
 // import make_it_happen_frontend from '../'
 
-import Login from './sessions/login';
-import Register from './sessions/register';
-import Home from './sessions/home';
-import Root from './sessions/root';
+import Login from './containers/Login';
+import Register from './containers/Register';
+import User from './containers/User';
+import Main from './containers/Main';
 
-const App = StackNavigator({
-  Home: { screen: Root },
-  Login: { screen: Login },
-  Register: { screen: Register },
-
-});
+const App = () => (
+  <Router>
+    <Scene key="root">
+      <Scene key="login" component={Login} title="Login"/>
+      <Scene key="register" component={Register} title="Register"/>
+      <Scene key="home" component={Home}/>
+    </Scene>
+  </Router>
+);
 
 export default class make_it_happen_frontend extends Component {
 
@@ -34,6 +37,8 @@ export default class make_it_happen_frontend extends Component {
         <Text style={styles.welcome}>
           Make It Happen
         </Text>
+        <Button title="Log In" onPress={this.></Button>
+
       </View>
     );
   }
