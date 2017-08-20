@@ -6,35 +6,40 @@ import {
   Button
 } from 'react-native';
 import {
-  StackNavigator,
-} from 'react-navigation';
-// import make_it_happen_frontend from '../'
+  Router,
+  Scene
+} from 'react-native-router-flux';
 
-import Login from './sessions/login';
-import Register from './sessions/register';
-import Home from './sessions/home';
-import Root from './sessions/root';
-import MainPage from './MainPage'
+import Login from './containers/Login';
+import Register from './containers/Register';
+import User from './containers/User';
+import Main from './containers/Main';
 
-const App = StackNavigator({
-  Home: { screen: Home },
-  Root: { screen: Root },
-  Login: { screen: Login },
-  Register: { screen: Register },
-
-});
 
 export default class make_it_happen_frontend extends Component {
 
-  static navigationOptions = {
-      title: 'Welcome',
-    };
-
   render() {
+
     return (
-      <View style={styles.container}>
-        <MainPage />
-      </View>
+      <Router>
+        <Scene key="root">
+        <Scene key="main"
+          component={Main}
+          title="Make It Happen"
+          initial
+        />
+        <Scene
+          key="login"
+          component={Login}
+          title="Login"
+        />
+        <Scene
+          key="register"
+          component={Register}
+          title="Register"
+        />
+      </Scene>
+    </Router>
     );
   }
 }
