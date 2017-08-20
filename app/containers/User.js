@@ -1,165 +1,80 @@
-// This code is taken from https://github.com/itzikbenh/React-Native-on-Rails
+import React, { PropTypes, Component } from 'react'
+import { View, Text, List, Button, FlatList, StyleSheet } from 'react-native'
+import Days from './Days'
+import axios from 'axios'
 
-'use strict';
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  TextInput,
-  TouchableHighlight,
-  ActivityIndicatorIOS,
-  AsyncStorage,
-  AlertIOS,
-  Text,
-  View
-} from 'react-native';
-
-const ACCESS_TOKEN = 'access_token';
-
-class Home extends Component {
-  constructor(props){
-    super(props);
-
+export default class MainPage extends Component {
+  constructor(){
+    super()
     this.state = {
-      isLoggenIn: "",
-      showProgress: false,
-      accessToken: "",
+      goals: [],
+      days: []
     }
   }
-  componentWillMount() {
-    this.getToken();
-  }
-  async getToken() {
-    try {
-      let accessToken = await AsyncStorage.getItem(ACCESS_TOKEN);
-      if(!accessToken) {
-          this.redirect('login');
-      } else {
-          this.setState({accessToken: accessToken})
-      }
-    } catch(error) {
-        console.log("Something went wrong");
-        this.redirect('login');
-    }
-  }
-  async deleteToken() {
-    try {
-        await AsyncStorage.removeItem(ACCESS_TOKEN)
-        this.redirect('root');
-    } catch(error) {
-        console.log("Something went wrong");
-    }
-  }
-  redirect(routeName){
-    this.props.navigator.push({
-      name: routeName,
-      passProps: {
-        accessToken: this.state.accessToken
-      }
+
+
+  componentDidMount(){
+    // change fetch url to all goals
+    axios.get("https://make-it-happen-api.herokuapp.com/api/categories/1/goals")
+    .then((response) => {
+      this.setState({
+        goals: response.data
+      })
+    })
+    .catch(function (error) {
+      console.log(error);
     });
-  }
-  onLogout(){
-    this.setState({showProgress: true})
-    this.deleteToken();
+
+    // Add this code once url for days is established.
+    // axios.get("https://make-it-happen-api.herokuapp.com/api/last_day")
+    // .then((response)=> {
+    //   this.setState({
+    //     days: response.data
+    //   })
+    // })
+        // .catch(function (error) {
+        //   console.log(error);
+        // });
+
   }
 
-  confirmDelete() {
-    AlertIOS.alert("Are you sure?", "This action cannot be undone", [
-      {text: 'Cancel'}, {text: 'Delete', onPress: () => this.onDelete()}
-    ]);
-  }
 
-  async onDelete(){
-    let access_token = this.state.accessToken
-    try {
-      let response = await fetch('https://afternoon-beyond-22141.herokuapp.com/api/users/'+access_token,{
-                              method: 'DELETE',
-                            });
-        let res = await response.text();
-        if (response.status >= 200 && response.status < 300) {
-          console.log("success sir: " + res)
-          this.redirect('root');
-        } else {
-          let error = res;
-          throw error;
-        }
-    } catch(error) {
-        console.log("error: " + error)
-    }
-  }
-  render() {
-    //We check to se if there is a flash message. It will be passed in user update.
-    let flashMessage;
-    if (this.props.flash) {
-       flashMessage = <Text style={styles.flash}>{this.props.flash}</Text>
-    } else {
-       flashMessage = null
-    }
-    return(
-      <View style={styles.container}>
-        {flashMessage}
-        <Text style={styles.title}> Welcome User </Text>
-        <Text style={styles.text}> Your new token is {this.state.accessToken} </Text>
 
-        <TouchableHighlight onPress={this.onLogout.bind(this)} style={styles.button}>
-          <Text style={styles.buttonText}>
-            Logout
-          </Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={this.redirect.bind(this, 'update')} style={styles.button}>
-          <Text style={styles.buttonText}>
-            Update Account
-          </Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={this.confirmDelete.bind(this)} style={styles.button}>
-          <Text style={styles.buttonText}>
-            Delete Account
-          </Text>
-        </TouchableHighlight>
-
-        <ActivityIndicatorIOS animating={this.state.showProgress} size="large" style={styles.loader} />
+  render () {
+    return (
+      <View>
+        <Button
+        title="Edit Profile"
+        />
+        <Text>
+          MainPage
+        </Text>
+          <Days />
+        <Text style={styles.centeredgoals}>
+          Achieved Goals
+        </Text>
+          <FlatList
+            data={this.state.goals}
+            renderItem={({ item }) =>
+              <Text style={styles.row}>{item.title}</Text>
+            }
+        />
       </View>
-    );
+    )
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-    padding: 10,
+  centeredgoals: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 20,
+    justifyContent:'center',
+    marginBottom: 10
   },
-  title: {
-    fontSize: 25,
-    marginTop: 15,
-    marginBottom: 15
-  },
-  text: {
-    marginBottom: 30
-  },
-  button: {
-    height: 50,
-    backgroundColor: 'red',
-    alignSelf: 'stretch',
-    marginTop: 10,
-    alignItems: 'flex-end',
-    justifyContent: 'center',
-  },
-  buttonText: {
-    fontSize: 22,
-    color: '#FFF',
-    alignSelf: 'center'
-  },
-  flash: {
-    height: 40,
-    backgroundColor: '#00ff00',
-    padding: 10,
-    alignSelf: 'center',
-  },
-  loader: {
-    marginTop: 20
+  row: {
+    backgroundColor: '#f4f4f4',
+    fontSize: 15,
+    color: '#696969'
   }
-});
-
-export default Home
+})
