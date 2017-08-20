@@ -15,6 +15,7 @@ import Register from './containers/Register';
 import User from './containers/User';
 import Main from './containers/Main';
 
+
 export default class make_it_happen_frontend extends Component {
 
   render() {
