@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  TextInput
 } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 
 const Login = () => {
+
   return (
     <View style={styles.container}>
       <Text style={styles.welcome}>
         Login
       </Text>
+      <TextInput style={styles.input} />
     </View>
   );
 }
@@ -21,14 +24,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#bb0000',
   },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
-    color: '#ffffff',
   },
+  input: {
+    backgroundColor: '#fff',
+    height: 40,
+    width:100,
+  }
 });
 
 export default Login;
