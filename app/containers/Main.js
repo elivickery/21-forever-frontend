@@ -7,7 +7,9 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-const Main = () => {
+export default class Main extends Component {
+
+  render() {
   return (
     <View style={styles.container}>
       <Text style={styles.welcome}>
@@ -17,6 +19,7 @@ const Main = () => {
       <Button title="Register" onPress={() => Actions.register()}/>
     </View>
   );
+}
 }
 
 const styles = StyleSheet.create({
@@ -34,4 +37,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Main;

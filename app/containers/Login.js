@@ -7,8 +7,9 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 
-const Login = () => {
+export default class Login extends Component {
 
+  render() {
   return (
     <View style={styles.container}>
       <Text style={styles.welcome}>
@@ -17,6 +18,7 @@ const Login = () => {
       <TextInput style={styles.input} />
     </View>
   );
+}
 }
 
 const styles = StyleSheet.create({
@@ -33,8 +35,6 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: '#fff',
     height: 40,
-    width:100,
+    width:200,
   }
 });
-
-export default Login;
