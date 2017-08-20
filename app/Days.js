@@ -31,16 +31,6 @@ export default class Days extends Component {
     .then((response) => {
       console.log(response);
   });
-//   fetch('https://mywebsite.com/endpoint/', {
-//   method: 'PATCH',
-//   headers: {
-//     'Accept': 'application/json',
-//     'Content-Type': 'application/json',
-//   },
-//   body: JSON.stringify({
-//     status: "failed",
-//   })
-// })
   }
 
   render () {

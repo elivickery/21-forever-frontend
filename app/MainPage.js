@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react'
-import { View, Text, List, FlatList, StyleSheet } from 'react-native'
+import { View, Text, List, Button, FlatList, StyleSheet } from 'react-native'
 import Days from './Days'
 import axios from 'axios'
 
@@ -25,7 +25,7 @@ export default class MainPage extends Component {
       console.log(error);
     });
 
-
+    // Add this code once url for days is established.
     // axios.get("https://make-it-happen-api.herokuapp.com/api/last_day")
     // .then((response)=> {
     //   this.setState({
@@ -35,36 +35,6 @@ export default class MainPage extends Component {
         // .catch(function (error) {
         //   console.log(error);
         // });
-  // fetch("https://make-it-happen-api.herokuapp.com/api/categories/1/goals")
-  // .then(response => response.json())
-  // .then((response) => {
-  //   console.log(response)
-  //   this.setState({
-  //     goals: response
-  //   })
-  // })
-  // .catch(error =>
-  //    this.setState({
-  //     isLoading: false,
-  //     message: 'Something bad happened ' + error
-  //  }));
-
-
-  // Change fetch url once Days controller is settled.
-  // fetch("https://make-it-happen-api.herokuapp.com/api/last_day")
-  // .then(response => response.json())
-  // .then((response) => {
-  //   console.log(response)
-  //   this.setState({
-  //     days: response
-  //   })
-  // })
-  // .catch(error =>
-  //    this.setState({
-  //     isLoading: false,
-  //     message: 'Something bad happened ' + error
-  //  }));
-
 
   }
 
@@ -73,6 +43,9 @@ export default class MainPage extends Component {
   render () {
     return (
       <View>
+        <Button
+        title="Edit Profile"
+        />
         <Text>
           MainPage
         </Text>
@@ -85,7 +58,7 @@ export default class MainPage extends Component {
             renderItem={({ item }) =>
               <Text style={styles.row}>{item.title}</Text>
             }
-          />
+        />
       </View>
     )
   }
