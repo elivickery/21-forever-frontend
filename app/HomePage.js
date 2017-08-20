@@ -14,9 +14,11 @@ import Login from './sessions/login';
 import Register from './sessions/register';
 import Home from './sessions/home';
 import Root from './sessions/root';
+import MainPage from './MainPage'
 
 const App = StackNavigator({
-  Home: { screen: Root },
+  Home: { screen: Home },
+  Root: { screen: Root },
   Login: { screen: Login },
   Register: { screen: Register },
 
@@ -31,9 +33,7 @@ export default class make_it_happen_frontend extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Make It Happen
-        </Text>
+        <MainPage />
       </View>
     );
   }
