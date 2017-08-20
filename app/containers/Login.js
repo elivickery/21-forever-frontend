@@ -8,45 +8,23 @@ import {
   AlertIOS
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import axios from 'axios';
 
 export default class Login extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props);
     this.state = {
       email: 'Enter your email',
-      password: 'Enter your password',
-      userId: null
+      password: 'Enter your password'
     }
 
-    this.authenticateUser = this.authenticateUser.bind(this)
     this.loginUser = this.loginUser.bind(this)
-    this._onPressSignUpButton = this._onPressSignUpButton.bind(this)
   }
-
-  authenticateUser(email, password) {
-    axios.post('https://make-it-happen-api.herokuapp.com/api/login', {
-        email: email,
-        password: password
-    })
-    .then((response) => {
-      this.setState({
-        userId: response.data.id
-      })
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
- }
 
 
   loginUser(){
-    this.authenticateUser(this.state.email, this.state.password)
-  }
-
-  _onPressSignUpButton(){
-    this.updateCurrentPage("SignUpPage")
+    console.log('tracking loginUser click')
+    this.props.authenticateUser(this.state.email, this.state.password)
   }
 
   render() {
