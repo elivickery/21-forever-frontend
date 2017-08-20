@@ -4,9 +4,11 @@ import {
   Text,
   View,
   TextInput,
-  Button
+  Button,
+  AlertIOS
 } from 'react-native';
-import { Actions } from 'react-native-router-flux'
+import { Actions } from 'react-native-router-flux';
+import axios from 'axios';
 
 export default class Login extends Component {
 
@@ -14,7 +16,8 @@ export default class Login extends Component {
     super()
     this.state = {
       email: 'Enter your email',
-      password: 'Enter your password'
+      password: 'Enter your password',
+      userId: null
     }
 
     this.authenticateUser = this.authenticateUser.bind(this)
@@ -23,29 +26,27 @@ export default class Login extends Component {
   }
 
   authenticateUser(email, password) {
-    fetch('https://dbc-foodr-api.herokuapp.com/users/login?email=' + email + '&password=' + password)
-    // fetch('http://localhost:3000/users/login?email=' + email + '&password=' + password)
-    .then(data => data.json())
-    .then(jsonData => {
-      if (jsonData.found) {
-        AlertIOS.alert('Login Successful!')
-        this.setState({userId: jsonData.id})
-        this.findUser()
-        this.updateCurrentPage('UserProfilePage')
-      } else {
-        AlertIOS.alert(jsonData.errors.join("\n"))
-      }
+    axios.post('https://make-it-happen-api.herokuapp.com/api/login', {
+        email: email,
+        password: password
     })
-    .catch((error) => {}) // currently not catching errors
-  }
+    .then((response) => {
+      this.setState({
+        userId: response.data.id
+      })
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+ }
 
 
   loginUser(){
-    this.props.authenticateUser(this.state.email, this.state.password)
+    this.authenticateUser(this.state.email, this.state.password)
   }
 
   _onPressSignUpButton(){
-    this.props.updateCurrentPage("SignUpPage")
+    this.updateCurrentPage("SignUpPage")
   }
 
   render() {
