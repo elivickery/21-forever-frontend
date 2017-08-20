@@ -10,10 +10,10 @@ import {
 } from 'react-navigation';
 // import make_it_happen_frontend from '../'
 
-import Login from '../login';
-import Register from '../register';
-import Home from '../home';
-import Root from '../root';
+import Login from './sessions/login';
+import Register from './sessions/register';
+import Home from './sessions/home';
+import Root from './sessions/root';
 
 const App = StackNavigator({
   Home: { screen: Root },
