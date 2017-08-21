@@ -71,7 +71,9 @@ export default class User extends Component {
           <List dataArray={this.state.acheived}
             renderRow={(item) =>
               <ListItem>
-                <Text>{item.title}</Text>
+                <Text>
+                <Icon medium {item.category_title} ios='ios-trophy' android='md-trophy'/>
+                {item.title}</Text>
               </ListItem>
             }>
           </List>
