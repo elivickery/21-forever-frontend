@@ -9,7 +9,8 @@ import {
 import {
   Router,
   Scene,
-  Actions
+  Actions,
+  Modal
 } from 'react-native-router-flux';
 import axios from 'axios';
 
@@ -17,6 +18,7 @@ import Login from './containers/Login';
 import Register from './containers/Register';
 import User from './containers/User';
 import Main from './containers/Main';
+import Popup from './containers/Popup'
 
 
 export default class make_it_happen_frontend extends Component {
@@ -79,6 +81,9 @@ export default class make_it_happen_frontend extends Component {
 
     return (
       <Router>
+
+      <Modal hideNavBar>
+
         <Scene key="root">
           <Scene key="main"
             component={Main}
@@ -105,6 +110,9 @@ export default class make_it_happen_frontend extends Component {
             accessToken={this.state.accessToken}
           />
       </Scene>
+        <Scene key="popup" component={Popup} title="Keep Going!" />
+    </Modal>
+
     </Router>
     );
   }
