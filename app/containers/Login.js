@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  View,
   AlertIOS
 } from 'react-native';
 import { Container, Title, Item, Input, Content, Button, Text } from 'native-base';
