@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react'
-import { View, Text, Button } from 'react-native'
+import { View, Text, Button, StyleSheet } from 'react-native'
 import axios from 'axios'
 
 export default class Days extends Component {
@@ -36,6 +36,9 @@ export default class Days extends Component {
   render () {
     return (
       <View>
+        <Text style={styles.day}>
+          {this.props.day}/21 Days
+        </Text>
         <Button
           onPress={this.buttonPressComplete}
           title="Completed"
@@ -48,3 +51,14 @@ export default class Days extends Component {
     )
   }
 }
+
+
+const styles = StyleSheet.create({
+  day: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 50,
+    justifyContent:'center',
+    marginBottom: 10
+  }
+})
