@@ -1,13 +1,21 @@
 import React, { PropTypes, Component } from 'react'
 import { View, Image, StyleSheet } from 'react-native'
+import { Icon, Container, Title, Item, Input, Content, Button, Text, Fab } from 'native-base'
+import { Actions } from 'react-native-router-flux';
 
 export default class Popup extends Component {
   render () {
     return (
-      <View style={styles.backwall}>
+      <Container style={styles.backwall}>
         <Image source={{uri: 'https://media.giphy.com/media/3o85xtLX7zCyeeWGLC/giphy.gif'}}
         style={styles.gif}/>
-      </View>
+        <Fab large
+          position="topRight"
+          onPress={() => Actions.pop()}
+          style={styles.actionButton}>
+          <Icon name="close" />
+        </Fab>
+      </Container>
     )
   }
 }
@@ -31,5 +39,8 @@ const styles = StyleSheet.create ({
     justifyContent: 'center',
     alignItems: 'center',
     resizeMode: 'contain'
+  },
+  actionButton: {
+    backgroundColor: 'transparent'
   }
 })
