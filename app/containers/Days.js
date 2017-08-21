@@ -6,27 +6,17 @@ export default class Days extends Component {
 
 
   buttonPressComplete(){
-    axios.patch(URL, {
-      'status': "achieved"
+    axios.patch('https://make-it-happen-api.herokuapp.com/api/days/edit', {
+      status: "achieved"
     })
     .then((response) => {
       console.log(response);
   });
-//   fetch('https://mywebsite.com/endpoint/', {
-//   method: 'PATCH',
-//   headers: {
-//     'Accept': 'application/json',
-//     'Content-Type': 'application/json',
-//   },
-//   body: JSON.stringify({
-//     status: "achieved",
-//   })
-// })
   }
 
   buttonPressInComplete(){
-    axios.patch(URL, {
-      'status': "failed"
+    axios.patch('https://make-it-happen-api.herokuapp.com/api/days/edit', {
+      status: "failed"
     })
     .then((response) => {
       console.log(response);
