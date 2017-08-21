@@ -2,26 +2,28 @@ import React, { PropTypes, Component } from 'react'
 import { View, Image, StyleSheet } from 'react-native'
 
 export default class Popup extends Component {
-  static propTypes = {}
-  state = {}
   render () {
     return (
-      <View>
-        <Image
-          style={styles.container}
-          source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
-        />
+      <View style={styles.backwall}>
+        <Image source={{uri: 'https://media.giphy.com/media/3o85xtLX7zCyeeWGLC/giphy.gif'}}
+        style={styles.gif}/>
       </View>
     )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+const styles = StyleSheet.create ({
+  backwall: {
+    backgroundColor: '#708090',
+    flex: 1
+  },
+  gif: {
+    top: 80,
+    left: -25,
+    position: 'relative',
     justifyContent: 'center',
     alignItems: 'center',
-    width: 100,
-    height: 100
+    width: 450,
+    height: 300
   }
-});
+})
