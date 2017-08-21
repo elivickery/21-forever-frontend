@@ -18,12 +18,18 @@ const styles = StyleSheet.create ({
     flex: 1
   },
   gif: {
-    top: 80,
-    left: -25,
-    position: 'relative',
+     // top: 140,
+    // left: -25,
+    // position: 'relative',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // width: 350,
+    // height: 200,
+    // marginLeft: 20
+    flex: 1,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    width: 450,
-    height: 300
+    resizeMode: 'contain'
   }
 })
