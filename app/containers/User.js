@@ -3,6 +3,8 @@ import { View, Text, List, Button, FlatList, StyleSheet } from 'react-native'
 import {Actions} from 'react-native-router-flux'
 import Days from './Days'
 import axios from 'axios'
+import { Icon, Container, Title, Item, Input, Content, Button, Footer, Text, List, Fab } from 'native-base';
+import { Actions } from 'react-native-router-flux';
 
 export default class User extends Component {
   constructor(props){
@@ -62,24 +64,39 @@ export default class User extends Component {
   //link new goal button when new submit goal form is established.
   render () {
     return (
-      <View>
-        <Button
-        title="Edit Profile"
-        />
-          {this.state.current ? <Days title={this.state.current.title} day={this.state.day} accessToken={this.props.accessToken}/> : <Button title="Add A Goal" onPress={()=>Actions.goals()} />}
+      <Container style={styles.container}>
+        <Title>My Progress</Title>
+          {this.state.current ? <Days title={this.state.current.title} day={this.state.day} accessToken={this.props.accessToken}/> : <Button block info style={styles.hasmargin}><Text>Add A Goal</Text></Button>}
           {this.state.achieved ? <Text style={styles.centeredgoals}> Achieved Goals </Text> : null}
-          <FlatList
-            data={this.state.achieved}
-            renderItem={({ item }) =>
-              <Text style={styles.row}>{item.title}</Text>
-            }
-        />
-      </View>
+
+          <List dataArray={this.state.acheived}
+            renderRow={(item) =>
+              <ListItem>
+                <Text>{item.title}</Text>
+              </ListItem>
+            }>
+          </List>
+
+          <Fab
+            active={this.state.active}
+            position="bottomRight"
+            onPress={() => Actions.popup()}
+            style={styles.actionButton}
+            >
+            <Icon large ios='ios-flame' android="md-flame" />
+          </Fab>
+      </Container>
+
     )
   }
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   centeredgoals: {
     textAlign: 'center',
     fontWeight: 'bold',
@@ -87,9 +104,12 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     marginBottom: 10
   },
-  row: {
-    backgroundColor: '#f4f4f4',
-    fontSize: 15,
-    color: '#696969'
+  hasmargin: {
+    marginLeft: 30,
+    marginRight: 30,
+    marginTop: 30
+  },
+  actionButton: {
+    backgroundColor: "#FFA500"
   }
 })
