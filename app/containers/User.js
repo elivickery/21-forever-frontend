@@ -4,18 +4,22 @@ import Days from './Days'
 import axios from 'axios'
 
 export default class MainPage extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
-      goals: [],
-      day: []
+      achieved: [],
+      day: [],
+      current: null
     }
   }
 
 
+
   componentDidMount(){
     // change fetch url to all goals
-    axios.get("https://make-it-happen-api.herokuapp.com/api/categories/1/goals")
+    axios.get("https://make-it-happen-api.herokuapp.com/api/goals/achieved", {
+        access_token: this.props.accessToken
+    })
     .then((response) => {
       this.setState({
         goals: response.data
@@ -25,7 +29,9 @@ export default class MainPage extends Component {
       console.log(error);
     });
 
-    axios.get("https://make-it-happen-api.herokuapp.com/api/day/count")
+    axios.get("https://make-it-happen-api.herokuapp.com/api/days/count", {
+        access_token: this.props.accessToken
+    })
     .then((response)=> {
       this.setState({
         day: response.data
@@ -35,22 +41,33 @@ export default class MainPage extends Component {
           console.log(error);
         });
 
+    // add when Day's controller's current method in backend is up.
+    // axios.get("https://make-it-happen-api.herokuapp.com/api/days/count")
+    // .then((response)=> {
+    //   this.setState({
+    //     current: response.data
+    //   })
+    // })
+    //     .catch(function (error) {
+    //       console.log(error);
+    //     });
+
   }
 
 
-
+  //link new goal button when new submit goal form is established.
   render () {
     return (
       <View>
         <Button
         title="Edit Profile"
         />
-          <Days day={this.state.day}/>
+          {this.state.current ? <Days title={this.state.current.title} day={this.state.day}/> : <Button title="Add A Goal" />}
         <Text style={styles.centeredgoals}>
           Achieved Goals
         </Text>
           <FlatList
-            data={this.state.goals}
+            data={this.state.achieved}
             renderItem={({ item }) =>
               <Text style={styles.row}>{item.title}</Text>
             }

@@ -36,6 +36,9 @@ export default class Days extends Component {
   render () {
     return (
       <View>
+        <Text>
+          {this.props.title}
+        </Text>
         <Text style={styles.day}>
           {this.props.day}/21 Days
         </Text>
