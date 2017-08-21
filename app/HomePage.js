@@ -49,8 +49,7 @@ export default class make_it_happen_frontend extends Component {
         accessToken: response.data.accessToken,
         logged_in: true
       });
-      console.log(this.state.logged_in)
-      Actions.user();
+      Actions.user({accessToken: this.state.accessToken});
     })
     .catch(function (error) {
       console.log(error.response);
@@ -70,7 +69,7 @@ export default class make_it_happen_frontend extends Component {
         accessToken: response.data.accessToken,
         logged_in: true
       });
-      Actions.user();
+      Actions.user({accessToken: this.state.accessToken});
     })
     .catch(function (error) {
       console.log(error.response);
