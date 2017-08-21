@@ -9,50 +9,39 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-export default class Register extends Component {
+export default class Profile extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      username: 'Enter your username',
-      email: 'Enter your email',
-      password: 'Enter your password'
+      email: '',
+      password: ''
     }
 
-    this.registerUser = this.registerUser.bind(this)
+    this.editUser = this.editUser.bind(this)
   }
 
 
-  registerUser(){
-    this.props.createUser(this.state.username, this.state.email, this.state.password)
+  editUser(){
+    this.props.updateUser(this.state.email, this.state.password)
   }
 
   render() {
   return (
     <View style={styles.container}>
-      <Text style={styles.welcome}>Register</Text>
+      <Text style={styles.welcome}>Edit Profile</Text>
       <TextInput
-          placeholder="username"
-          placeholderTextColor='#949799'
-          returnKeyType="next"
-          autoCapitalize="none"
-          autoCorrect={false}
-          style={styles.input}
-          onChangeText={(username) => this.setState({username})}
-        />
-      <TextInput
-          placeholder="email"
-          placeholderTextColor='#949799'
+          value={this.state.email}
           returnKeyType="next"
           keyboardType="email-address"
           autoCapitalize="none"
           autoCorrect={false}
           style={styles.input}
           onChangeText={(email) => this.setState({email})}
+          onSubmitEditing={() => this.passwordInput.focus()}
         />
         <TextInput
-          placeholder="password"
-          placeholderTextColor='#949799'
+          value={this.state.password}
           returnKeyType="go"
           keyboardType="default"
           secureTextEntry
@@ -61,9 +50,9 @@ export default class Register extends Component {
           style={styles.input}
           onChangeText={(password) => this.setState({password})}
           ref={(input) => this.passwordInput = input}
-          onSubmitEditing={this.loginUser}
+          onSubmitEditing={this.editUser}
         />
-        <Button title="Go" onPress={this.registerUser}>
+        <Button title="Update" onPress={this.editUser}>
         </Button>
     </View>
   );
