@@ -11,6 +11,8 @@ export default class MainPage extends Component {
       day: [],
       current: null
     }
+
+
   }
 
 

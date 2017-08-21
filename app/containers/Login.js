@@ -23,7 +23,6 @@ export default class Login extends Component {
 
 
   loginUser(){
-    console.log('tracking loginUser click')
     this.props.authenticateUser(this.state.email, this.state.password)
   }
 
