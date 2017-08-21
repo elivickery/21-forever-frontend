@@ -3,30 +3,24 @@ import { View, Text, Button, StyleSheet } from 'react-native'
 import axios from 'axios'
 
 export default class Days extends Component {
-
+  constructor(props) {
+    super(props);
+  }
 
   buttonPressComplete(){
-    axios.patch(URL, {
-      'status': "achieved"
+    axios.patch('https://make-it-happen-api.herokuapp.com/api/days/edit', {
+      status: "achieved",
+      access_token: this.props.accessToken
     })
     .then((response) => {
       console.log(response);
   });
-//   fetch('https://mywebsite.com/endpoint/', {
-//   method: 'PATCH',
-//   headers: {
-//     'Accept': 'application/json',
-//     'Content-Type': 'application/json',
-//   },
-//   body: JSON.stringify({
-//     status: "achieved",
-//   })
-// })
   }
 
   buttonPressInComplete(){
-    axios.patch(URL, {
-      'status': "failed"
+    axios.patch('https://make-it-happen-api.herokuapp.com/api/days/edit', {
+      status: "failed",
+      access_token: this.props.accessToken
     })
     .then((response) => {
       console.log(response);
