@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Button,
   AlertIOS
 } from 'react-native';
+import { Container, Title, Item, Input, Content, Button, Text } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
 export default class Login extends Component {
@@ -28,34 +25,37 @@ export default class Login extends Component {
 
   render() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.welcome}>Log In</Text>
-      <TextInput
+    <Container style={styles.container}>
+      <Title>Log In</Title>
+      <Item>
+        <Input
           placeholder="email"
           placeholderTextColor='#949799'
           returnKeyType="next"
           keyboardType="email-address"
           autoCapitalize="none"
           autoCorrect={false}
-          style={styles.input}
           onChangeText={(email) => this.setState({email})}
 
-        />
-        <TextInput
-          placeholder="password"
-          placeholderTextColor='#949799'
-          returnKeyType="go"
-          secureTextEntry={true}
-          autoCapitalize="none"
-          autoCorrect={false}
-          onChangeText={(password) => this.setState({password})}
-          ref={(input) => this.passwordInput = input}
-          style={styles.input}
-          onSubmitEditing={this.loginUser}
-        />
-        <Button title="Go" onPress={this.loginUser}>
+          />
+        </Item>
+        <Item>
+          <Input
+            placeholder="password"
+            placeholderTextColor='#949799'
+            returnKeyType="go"
+            secureTextEntry={true}
+            autoCapitalize="none"
+            autoCorrect={false}
+            onChangeText={(password) => this.setState({password})}
+            ref={(input) => this.passwordInput = input}
+            onSubmitEditing={this.loginUser}
+          />
+         </Item>
+        <Button block info style={styles.hasmargin} onPress={this.loginUser}>
+          <Text>Log In</Text>
         </Button>
-    </View>
+    </Container>
   );
 }
 }
@@ -77,5 +77,10 @@ const styles = StyleSheet.create({
     width:200,
     padding: 3,
     margin: 10
+  },
+  hasmargin: {
+    marginLeft: 30,
+    marginRight: 30,
+    marginTop: 30
   }
 });
