@@ -39,9 +39,14 @@ export default class MainPage extends Component {
         day: response.data
       })
     })
-        .catch(function (error) {
-          console.log(error);
-        });
+    .catch(function (error) {
+      console.log(error);
+    });
+
+    // only show popup every 3rd day
+    // if(this.state.day % 3 === 0) {
+    //   Actions.popup();
+    // }
 
     // add when Day's controller's current method in backend is up.
     // axios.get("https://make-it-happen-api.herokuapp.com/api/days/count")
