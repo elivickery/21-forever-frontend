@@ -4,8 +4,8 @@ import Days from './Days'
 import axios from 'axios'
 
 export default class MainPage extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       achieved: [],
       day: [],
@@ -17,7 +17,9 @@ export default class MainPage extends Component {
 
   componentDidMount(){
     // change fetch url to all goals
-    axios.get("https://make-it-happen-api.herokuapp.com/api/goals/achieved")
+    axios.get("https://make-it-happen-api.herokuapp.com/api/goals/achieved", {
+        access_token: this.props.accessToken
+    })
     .then((response) => {
       this.setState({
         goals: response.data
@@ -27,7 +29,9 @@ export default class MainPage extends Component {
       console.log(error);
     });
 
-    axios.get("https://make-it-happen-api.herokuapp.com/api/days/count")
+    axios.get("https://make-it-happen-api.herokuapp.com/api/days/count", {
+        access_token: this.props.accessToken
+    })
     .then((response)=> {
       this.setState({
         day: response.data
