@@ -110,16 +110,15 @@ export default class make_it_happen_frontend extends Component {
             component={Main}
             hideNavBar
             title="Make It Happen"
-
+            initial={!this.state.logged_in}
           />
           <Scene
             key="user"
             component={User}
             hideNavBar
             title="My Goals"
-
+            initial={this.state.logged_in}
             accessToken={this.state.accessToken}
-            initial
           />
           <Scene
             key="profile"
