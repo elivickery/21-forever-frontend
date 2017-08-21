@@ -15,15 +15,18 @@ export default class User extends Component {
     }
   }
 
-  componentDidMount(){
+  componentWillMount(){
+    console.log(this.props.accessToken)
     // change fetch url to all goals
     axios.get("https://make-it-happen-api.herokuapp.com/api/goals/achieved", {
         access_token: this.props.accessToken
     })
     .then((response) => {
+      console.log(response)
       this.setState({
-        goals: response.data
+        achieved: response.data
       })
+      console.log(this.state.achieved)
     })
     .catch(function (error) {
       console.log(error);
@@ -65,6 +68,7 @@ export default class User extends Component {
     return (
       <Container style={styles.container}>
         <Title>My Progress</Title>
+       <Text>User access token: {this.props.accessToken}</Text>
           {this.state.current ? <Days title={this.state.current.title} day={this.state.day} accessToken={this.props.accessToken}/> : <Button block info style={styles.hasmargin}><Text>Add A Goal</Text></Button>}
           {this.state.achieved ? <Text style={styles.centeredgoals}> Achieved Goals </Text> : null}
 
