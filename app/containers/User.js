@@ -3,7 +3,7 @@ import { View, Text, List, Button, FlatList, StyleSheet } from 'react-native'
 import Days from './Days'
 import axios from 'axios'
 
-export default class MainPage extends Component {
+export default class User extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -11,11 +11,7 @@ export default class MainPage extends Component {
       day: [],
       current: null
     }
-
-
   }
-
-
 
   componentDidMount(){
     // change fetch url to all goals
@@ -69,7 +65,7 @@ export default class MainPage extends Component {
         <Button
         title="Edit Profile"
         />
-          {this.state.current ? <Days title={this.state.current.title} day={this.state.day}/> : <Button title="Add A Goal" />}
+          {this.state.current ? <Days title={this.state.current.title} day={this.state.day} accessToken={this.props.accessToken}/> : <Button title="Add A Goal" />}
         <Text style={styles.centeredgoals}>
           Achieved Goals
         </Text>
