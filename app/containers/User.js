@@ -1,10 +1,9 @@
 import React, { PropTypes, Component } from 'react'
-import { View, Text, List, Button, FlatList, StyleSheet } from 'react-native'
+import { View, FlatList, StyleSheet } from 'react-native'
 import {Actions} from 'react-native-router-flux'
 import Days from './Days'
 import axios from 'axios'
 import { Icon, Container, Title, Item, Input, Content, Button, Footer, Text, List, Fab } from 'native-base';
-import { Actions } from 'react-native-router-flux';
 
 export default class User extends Component {
   constructor(props){
@@ -66,7 +65,7 @@ export default class User extends Component {
     return (
       <Container style={styles.container}>
         <Title>My Progress</Title>
-          {this.state.current ? <Days title={this.state.current.title} day={this.state.day} accessToken={this.props.accessToken}/> : <Button block info style={styles.hasmargin}><Text>Add A Goal</Text></Button>}
+          {this.state.current ? <Days title={this.state.current.title} day={this.state.day} accessToken={this.props.accessToken}/> : <Button block info style={styles.hasmargin} onPress={()=>Actions.goals()}><Text>Add A Goal</Text></Button>}
           {this.state.achieved ? <Text style={styles.centeredgoals}> Achieved Goals </Text> : null}
 
           <List dataArray={this.state.acheived}
