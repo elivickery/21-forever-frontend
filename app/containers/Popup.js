@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react'
-import { View, Image } from 'react-native'
+import { View, Image, StyleSheet } from 'react-native'
 
 export default class Popup extends Component {
   static propTypes = {}
