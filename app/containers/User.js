@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import { View, Text, List, Button, FlatList, StyleSheet } from 'react-native'
+import {Actions} from 'react-native-router-flux'
 import Days from './Days'
 import axios from 'axios'
 
@@ -65,7 +66,7 @@ export default class User extends Component {
         <Button
         title="Edit Profile"
         />
-          {this.state.current ? <Days title={this.state.current.title} day={this.state.day} accessToken={this.props.accessToken}/> : <Button title="Add A Goal" />}
+          {this.state.current ? <Days title={this.state.current.title} day={this.state.day} accessToken={this.props.accessToken}/> : <Button title="Add A Goal" onPress={()=>Actions.goals()} />}
           {this.state.achieved ? <Text style={styles.centeredgoals}> Achieved Goals </Text> : null}
           <FlatList
             data={this.state.achieved}

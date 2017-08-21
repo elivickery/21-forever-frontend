@@ -19,6 +19,7 @@ import Register from './containers/Register';
 import User from './containers/User';
 import Main from './containers/Main';
 import Popup from './containers/Popup'
+import Goal from './containers/Goals'
 
 
 export default class make_it_happen_frontend extends Component {
@@ -108,6 +109,12 @@ export default class make_it_happen_frontend extends Component {
             title="My Goals"
             initial={this.state.logged_in}
             accessToken={this.state.accessToken}
+          />
+          <Scene
+            key="goals"
+            component={Goal}
+            title="New Goal"
+
           />
       </Scene>
         <Scene key="popup" component={Popup} title="Keep Going!" />
