@@ -39,19 +39,18 @@ export default class Login extends Component {
           autoCorrect={false}
           style={styles.input}
           onChangeText={(email) => this.setState({email})}
-          onSubmitEditing={() => this.passwordInput.focus()}
+
         />
         <TextInput
           placeholder="password"
           placeholderTextColor='#949799'
           returnKeyType="go"
-          keyboardType="default"
-          secureTextEntry
+          secureTextEntry={true}
           autoCapitalize="none"
           autoCorrect={false}
-          style={styles.input}
           onChangeText={(password) => this.setState({password})}
           ref={(input) => this.passwordInput = input}
+          style={styles.input}
           onSubmitEditing={this.loginUser}
         />
         <Button title="Go" onPress={this.loginUser}>
@@ -76,7 +75,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     height: 40,
     width:200,
-    padding: 20,
-    margin: 10,
+    padding: 3,
+    margin: 10
   }
 });

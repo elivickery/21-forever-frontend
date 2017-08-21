@@ -108,24 +108,14 @@ export default class make_it_happen_frontend extends Component {
         <Scene key="root">
           <Scene key="main"
             component={Main}
+            hideNavBar
             title="Make It Happen"
             initial={!this.state.logged_in}
           />
           <Scene
-            key="login"
-            component={Login}
-            title="Login"
-            authenticateUser={this.authenticateUser}
-          />
-          <Scene
-            key="register"
-            component={Register}
-            title="Register"
-            createUser={this.createUser}
-          />
-          <Scene
             key="user"
             component={User}
+            hideNavBar
             title="My Goals"
             initial={this.state.logged_in}
             accessToken={this.state.accessToken}
@@ -138,7 +128,21 @@ export default class make_it_happen_frontend extends Component {
             updateUser={this.updateUser}
           />
       </Scene>
-        <Scene key="popup" component={Popup} title="Keep Going!" />
+      <Scene key="popup" component={Popup} title="Keep Going!" />
+        <Scene
+          key="login"
+          component={Login}
+          hideNavBar
+          title="Login"
+          authenticateUser={this.authenticateUser}
+        />
+        <Scene
+          key="register"
+          component={Register}
+          title="Register"
+          hideNavBar
+          createUser={this.createUser}
+        />
     </Modal>
 
     </Router>
