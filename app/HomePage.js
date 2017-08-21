@@ -102,6 +102,7 @@ export default class make_it_happen_frontend extends Component {
             component={User}
             title="My Goals"
             initial={this.state.logged_in}
+            accessToken={this.state.accessToken}
           />
       </Scene>
     </Router>
