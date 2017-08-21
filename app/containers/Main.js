@@ -17,7 +17,6 @@ export default class Main extends Component {
       </Text>
       <Button title="Log In" onPress={() => Actions.login()}/>
       <Button title="Register" onPress={() => Actions.register()}/>
-      <Button title="User" onPress={() => Actions.user()}/>
     </View>
   );
 }
