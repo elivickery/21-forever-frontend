@@ -23,7 +23,7 @@ export default class make_it_happen_frontend extends Component {
   constructor() {
     super()
     this.state = {
-      userId: null
+      accessToken: null
     }
 
 
@@ -31,16 +31,14 @@ export default class make_it_happen_frontend extends Component {
   }
 
   authenticateUser(email, password) {
-    console.log('tracking authenticateUser');
-    console.log(email)
-    console.log(password)
+
     axios.post('https://make-it-happen-api.herokuapp.com/api/login', {
         email: email,
         password: password
     })
     .then((response) => {
       this.setState({
-        userId: response.data.id
+        accessToken: response.data.accessToken
       })
       Actions.user();
     })
