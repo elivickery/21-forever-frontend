@@ -26,7 +26,6 @@ export default class make_it_happen_frontend extends Component {
         <Scene key="main"
           component={Main}
           title="Make It Happen"
-          initial
         />
         <Scene
           key="login"
@@ -37,6 +36,12 @@ export default class make_it_happen_frontend extends Component {
           key="register"
           component={Register}
           title="Register"
+        />
+        <Scene
+          key="user"
+          component={User}
+          title="User"
+          initial
         />
       </Scene>
     </Router>
