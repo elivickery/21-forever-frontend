@@ -7,7 +7,7 @@ export default class User extends Component {
   constructor(props){
     super(props)
     this.state = {
-      achieved: [],
+      achieved: null,
       day: [],
       current: null
     }
@@ -66,7 +66,7 @@ export default class User extends Component {
         title="Edit Profile"
         />
           {this.state.current ? <Days title={this.state.current.title} day={this.state.day} accessToken={this.props.accessToken}/> : <Button title="Add A Goal" />}
-          {this.state.current ? <Text style={styles.centeredgoals}> Achieved Goals </Text> : null}
+          {this.state.achieved ? <Text style={styles.centeredgoals}> Achieved Goals </Text> : null}
           <FlatList
             data={this.state.achieved}
             renderItem={({ item }) =>
