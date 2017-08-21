@@ -8,7 +8,7 @@ export default class MainPage extends Component {
     super()
     this.state = {
       goals: [],
-      days: []
+      day: []
     }
   }
 
@@ -25,16 +25,15 @@ export default class MainPage extends Component {
       console.log(error);
     });
 
-    // Add this code once url for days is established.
-    // axios.get("https://make-it-happen-api.herokuapp.com/api/last_day")
-    // .then((response)=> {
-    //   this.setState({
-    //     days: response.data
-    //   })
-    // })
-        // .catch(function (error) {
-        //   console.log(error);
-        // });
+    axios.get("https://make-it-happen-api.herokuapp.com/api/day/count")
+    .then((response)=> {
+      this.setState({
+        day: response.data
+      })
+    })
+        .catch(function (error) {
+          console.log(error);
+        });
 
   }
 
@@ -46,10 +45,7 @@ export default class MainPage extends Component {
         <Button
         title="Edit Profile"
         />
-        <Text>
-          MainPage
-        </Text>
-          <Days />
+          <Days day={this.state.day}/>
         <Text style={styles.centeredgoals}>
           Achieved Goals
         </Text>
