@@ -10,6 +10,8 @@ export default class MainPage extends Component {
       goals: [],
       day: []
     }
+
+
   }
 
 

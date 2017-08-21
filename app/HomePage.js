@@ -3,7 +3,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Button
+  Button,
+  AlertIOS
 } from 'react-native';
 import {
   Router,
@@ -22,13 +23,17 @@ export default class make_it_happen_frontend extends Component {
 
   constructor() {
     super()
+
     this.state = {
-      accessToken: null
+      accessToken: null,
+      logged_in: false
     }
 
 
     this.authenticateUser = this.authenticateUser.bind(this)
+    this.createUser = this.createUser.bind(this)
   }
+
 
   authenticateUser(email, password) {
 
@@ -38,12 +43,34 @@ export default class make_it_happen_frontend extends Component {
     })
     .then((response) => {
       this.setState({
-        accessToken: response.data.accessToken
-      })
+        accessToken: response.data.accessToken,
+        logged_in: true
+      });
+      console.log(this.state.logged_in)
       Actions.user();
     })
     .catch(function (error) {
-      console.log(error);
+      console.log(error.response);
+    });
+ }
+
+
+  createUser(username, email, password) {
+
+    axios.post('https://make-it-happen-api.herokuapp.com/api/users', {
+        username: username,
+        email: email,
+        password: password
+    })
+    .then((response) => {
+      this.setState({
+        accessToken: response.data.accessToken,
+        logged_in: true
+      });
+      Actions.user();
+    })
+    .catch(function (error) {
+      console.log(error.response);
     });
  }
 
@@ -56,7 +83,7 @@ export default class make_it_happen_frontend extends Component {
           <Scene key="main"
             component={Main}
             title="Make It Happen"
-            initial
+            initial={!this.state.logged_in}
           />
           <Scene
             key="login"
@@ -68,11 +95,13 @@ export default class make_it_happen_frontend extends Component {
             key="register"
             component={Register}
             title="Register"
+            createUser={this.createUser}
           />
           <Scene
             key="user"
             component={User}
             title="My Goals"
+            initial={this.state.logged_in}
           />
       </Scene>
     </Router>
