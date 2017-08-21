@@ -72,7 +72,7 @@ export default class User extends Component {
             renderRow={(item) =>
               <ListItem>
                 <Text>
-                <Icon medium {item.category_title} ios='ios-trophy' android='md-trophy'/>
+                <Icon medium class={item.category_id} ios='ios-trophy' android='md-trophy'/>
                 {item.title}</Text>
               </ListItem>
             }>
