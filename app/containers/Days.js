@@ -27,8 +27,7 @@ export default class Days extends Component {
         completed: true,
         failed: false
       });
-
-  })
+    })
     .catch(function (error) {
 
     });

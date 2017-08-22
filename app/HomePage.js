@@ -18,7 +18,8 @@ import Login from './containers/Login';
 import Register from './containers/Register';
 import User from './containers/User';
 import Main from './containers/Main';
-import Popup from './containers/Popup';
+import Popup from './containers/Popup'
+import Goal from './containers/Goals'
 import Profile from './containers/Profile';
 
 
@@ -82,8 +83,7 @@ export default class make_it_happen_frontend extends Component {
     });
  }
 
-
-  updateUser(email, password) {
+ updateUser(email, password) {
 
     axios.post('https://make-it-happen-api.herokuapp.com/api/users/', {
         accessToken: response.data.accessToken,
@@ -145,6 +145,19 @@ export default class make_it_happen_frontend extends Component {
             title="Register"
             hideNavBar
             createUser={this.createUser}
+          />
+          <Scene
+            key="user"
+            component={User}
+            title="My Goals"
+            initial={this.state.logged_in}
+            accessToken={this.state.accessToken}
+          />
+          <Scene
+            key="goals"
+            component={Goal}
+            title="New Goal"
+
           />
       </Scene>
 
