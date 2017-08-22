@@ -83,25 +83,7 @@ export default class make_it_happen_frontend extends Component {
     });
  }
 
- createGoal(category, new_goal){
-   axios.post('https://make-it-happen-api.herokuapp.com/api/goals', {
-     category: category,
-     title: new_goal
-   })
-  .then((response) => {
-    this.setState({
-      accessToken: response.data.accessToken,
-      logged_in: true
-    });
-    Actions.goal();
-  })
-  .catch(function (error) {
-    console.log(error.response);
-  });
- }
-
-
-  updateUser(email, password) {
+ updateUser(email, password) {
 
     axios.post('https://make-it-happen-api.herokuapp.com/api/users/', {
         accessToken: response.data.accessToken,

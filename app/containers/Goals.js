@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Picker, StyleSheet, AlertIOS } from 'react-native';
 import { Container, Title, Item, Input, Content, Button, Text } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import axios from 'axios'
 
 export default class Goal extends Component {
     constructor(props) {
@@ -10,8 +11,22 @@ export default class Goal extends Component {
             new_goal: '',
             category: ''
         }
+        this.createGoal = this.createGoal.bind(this)
     }
-
+    createGoal(category, new_goal){
+    axios.post('https://make-it-happen-api.herokuapp.com/api/goals', {
+        category: category,
+        title: new_goal,
+        access_token: this.props.accessToken
+    })
+    .then((response) => {
+        console.log(response.data)
+        Actions.pop();
+    })
+    .catch(function (error) {
+        console.log(error.response);
+    });
+    }
     render() { 
         return (
         <Container>
@@ -36,7 +51,7 @@ export default class Goal extends Component {
         <Button block info style={styles.hasmargin} onPress={this.createGoal}>
             <Text>Create Goal</Text>
         </Button>
-          </Container>
+        </Container>
         )
     }
 
@@ -66,3 +81,4 @@ const styles = StyleSheet.create({
     marginTop: 30
   }
 });
+
