@@ -1,13 +1,15 @@
 import React, { PropTypes, Component } from 'react'
-import { View, Text, Button, StyleSheet } from 'react-native'
-import { Title } from 'native-base'
+import { View, Text, StyleSheet } from 'react-native'
+import { Title, Button } from 'native-base'
 import axios from 'axios'
 
 export default class Days extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      accessToken: this.props.accessToken
+      accessToken: this.props.accessToken,
+      completed: false,
+      failed: false
     }
     this.buttonPressComplete = this.buttonPressComplete.bind(this)
     this.buttonPressInComplete = this.buttonPressInComplete.bind(this)
@@ -25,8 +27,7 @@ export default class Days extends Component {
         completed: true,
         failed: false
       });
-      console.log(this);
-  })
+    })
     .catch(function (error) {
 
     });
@@ -40,8 +41,8 @@ export default class Days extends Component {
     .then((response) => {
       console.log(response);
       this.setState({
-        completed: true,
-        failed: false
+        completed: false,
+        failed: true
       });
   })
     .catch(function (error) {
@@ -60,16 +61,14 @@ export default class Days extends Component {
         <Text style={styles.day}>
           {this.props.day}/21 Days
         </Text>
-        <Button
-          style={[styles.base, this.state.completed && styles.completed]}
+        <Button block info
+          style={[styles.hasmargin, this.state.completed ? styles.completed : null]}
           onPress={this.buttonPressComplete}
-          title="Completed"
-        />
-        <Button
-          style={[styles.base, this.state.failed && styles.failed]}
+        ><Text>Completed</Text></Button>
+        <Button block info
+          style={[styles.hasmargin, this.state.failed ? styles.failed : null]}
           onPress={this.buttonPressInComplete}
-          title="Not Completed"
-        />
+        ><Text>Not Completed</Text></Button>
       </View>
     )
   }
@@ -89,5 +88,11 @@ const styles = StyleSheet.create({
   },
   completed: {
     backgroundColor: 'green'
+  },
+  base: {
+    backgroundColor: 'blue'
+  },
+  hasmargin: {
+    marginTop: 30
   }
 })
