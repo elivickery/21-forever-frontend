@@ -18,7 +18,8 @@ import Login from './containers/Login';
 import Register from './containers/Register';
 import User from './containers/User';
 import Main from './containers/Main';
-import Popup from './containers/Popup';
+import Popup from './containers/Popup'
+import Goal from './containers/Goals'
 import Profile from './containers/Profile';
 
 
@@ -80,6 +81,23 @@ export default class make_it_happen_frontend extends Component {
     .catch(function (error) {
       console.log(error.response);
     });
+ }
+
+ createGoal(category, new_goal){
+   axios.post('https://make-it-happen-api.herokuapp.com/api/goals', {
+     category: category,
+     title: new_goal
+   })
+  .then((response) => {
+    this.setState({
+      accessToken: response.data.accessToken,
+      logged_in: true
+    });
+    Actions.goal();
+  })
+  .catch(function (error) {
+    console.log(error.response);
+  });
  }
 
 
@@ -145,6 +163,19 @@ export default class make_it_happen_frontend extends Component {
             title="Register"
             hideNavBar
             createUser={this.createUser}
+          />
+          <Scene
+            key="user"
+            component={User}
+            title="My Goals"
+            initial={this.state.logged_in}
+            accessToken={this.state.accessToken}
+          />
+          <Scene
+            key="goals"
+            component={Goal}
+            title="New Goal"
+
           />
       </Scene>
 

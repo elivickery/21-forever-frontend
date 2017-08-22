@@ -1,9 +1,9 @@
 import React, { PropTypes, Component } from 'react'
-import { FlatList, StyleSheet } from 'react-native'
+import { View, FlatList, StyleSheet } from 'react-native'
+import {Actions} from 'react-native-router-flux'
 import Days from './Days'
 import axios from 'axios'
 import { ListItem, Icon, Container, Title, Item, Input, Content, Button, Footer, Text, List, Fab } from 'native-base';
-import { Actions } from 'react-native-router-flux';
 
 export default class User extends Component {
   constructor(props){

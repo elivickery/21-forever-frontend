@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  AlertIOS
-} from 'react-native';
+import { StyleSheet, AlertIOS } from 'react-native';
 import { Container, Title, Item, Input, Content, Button, Text } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
@@ -15,7 +12,7 @@ export default class Register extends Component {
       email: 'Enter your email',
       password: 'Enter your password'
     }
-
+    
     this.registerUser = this.registerUser.bind(this)
   }
 
