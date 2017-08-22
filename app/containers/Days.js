@@ -27,7 +27,7 @@ export default class Days extends Component {
         completed: true,
         failed: false
       });
-      console.log(this);
+
   })
     .catch(function (error) {
 
@@ -62,12 +62,12 @@ export default class Days extends Component {
         <Text style={styles.day}>
           {this.props.day}/21 Days
         </Text>
-        <Button block info active={true}
-          style={styles.hasmargin, this.state.completed ? styles.completed : null}
+        <Button block info
+          style={[styles.hasmargin, this.state.completed ? styles.completed : null]}
           onPress={this.buttonPressComplete}
         ><Text>Completed</Text></Button>
         <Button block info
-          style={styles.hasmargin, this.state.failed ? styles.failed : null}
+          style={[styles.hasmargin, this.state.failed ? styles.failed : null]}
           onPress={this.buttonPressInComplete}
         ><Text>Not Completed</Text></Button>
       </View>
@@ -94,8 +94,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue'
   },
   hasmargin: {
-    marginLeft: 30,
-    marginRight: 30,
     marginTop: 30
   }
 })
