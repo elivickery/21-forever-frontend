@@ -4,7 +4,8 @@ import {Actions} from 'react-native-router-flux'
 import Days from './Days'
 import axios from 'axios'
 import { ListItem, Icon, Container, Title, Item, Input, Content, Button, Footer, Text, List, Fab } from 'native-base';
-import { AnimatedCircularProgress } from 'react-native-circular-progress';
+import ProgressCircle from 'react-native-progress-circle'
+
 
 export default class User extends Component {
   constructor(props){
@@ -68,20 +69,18 @@ export default class User extends Component {
       <Container style={styles.container}>
         <Title>My Progress</Title>
 
-        <AnimatedCircularProgress
-  size={200}
-  width={3}
-  fill={this.state.fill}
-  tintColor="#00e0ff"
-  backgroundColor="#3d5875">
-  {
-    (fill) => (
-      <Text style={styles.points}>
-        { this.state.fill }
-      </Text>
-    )
-  }
-</AnimatedCircularProgress>
+        <ProgressCircle
+            percent={(this.state.day/21*100)}
+            radius={100}
+            borderWidth={10}
+            color="#00e0ff"
+            backgroundColor="#3d5875"
+            shadowColor="#999"
+
+        >
+            <Text style={{ fontSize: 40 }}>{this.state.day+'/21'}</Text>
+        </ProgressCircle>
+
 
           {this.state.current ? <Days title={this.state.current.title} day={this.state.day} accessToken={this.props.accessToken}/> :
           <Button block info style={styles.hasmargin} onPress={()=>{Actions.goals({accessToken: this.props.accessToken})}} ><Text>Add A Goal</Text></Button>}
