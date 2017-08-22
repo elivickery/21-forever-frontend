@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import { View, Text, Button, StyleSheet } from 'react-native'
+import { Title } from 'native-base'
 import axios from 'axios'
 
 export default class Days extends Component {
@@ -20,6 +21,11 @@ export default class Days extends Component {
     })
     .then((response) => {
       console.log(response);
+      this.setState({
+        completed: true,
+        failed: false
+      });
+      console.log(this);
   })
     .catch(function (error) {
 
@@ -33,6 +39,10 @@ export default class Days extends Component {
     })
     .then((response) => {
       console.log(response);
+      this.setState({
+        completed: true,
+        failed: false
+      });
   })
     .catch(function (error) {
 
@@ -44,17 +54,19 @@ export default class Days extends Component {
   render () {
     return (
       <View>
-        <Text>
+        <Title>
           {this.props.title}
-        </Text>
+        </Title>
         <Text style={styles.day}>
           {this.props.day}/21 Days
         </Text>
         <Button
+          style={[styles.base, this.state.completed && styles.completed]}
           onPress={this.buttonPressComplete}
           title="Completed"
         />
         <Button
+          style={[styles.base, this.state.failed && styles.failed]}
           onPress={this.buttonPressInComplete}
           title="Not Completed"
         />
@@ -71,5 +83,11 @@ const styles = StyleSheet.create({
     fontSize: 50,
     justifyContent:'center',
     marginBottom: 10
+  },
+  failed: {
+    backgroundColor: 'red'
+  },
+  completed: {
+    backgroundColor: 'green'
   }
 })
