@@ -8,10 +8,12 @@
 	},
 	"dependencies": {
 		"@expo/vector-icons": "^5.1.0",
+		"art": "^0.10.1",
 		"axios": "^0.16.2",
 		"native-base": "^2.3.1",
 		"react": "16.0.0-alpha.12",
 		"react-native": "0.47.1",
+		"react-native-circular-progress": "0.0.8",
 		"react-native-router-flux": "^4.0.0-beta.18",
 		"react-navigation": "^1.0.0-beta.11"
 	},
