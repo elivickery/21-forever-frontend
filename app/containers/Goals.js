@@ -13,7 +13,7 @@ export default class Goal extends Component {
         }
         this.createGoal = this.createGoal.bind(this)
     }
-    createGoal{
+    createGoal(){
     axios.post('https://make-it-happen-api.herokuapp.com/api/goals', {
         category: this.state.category,
         title: this.state.new_goal,
@@ -27,7 +27,7 @@ export default class Goal extends Component {
         console.log(error.response);
     });
     }
-    render() { 
+    render() {
         return (
         <Container>
         <Picker selectedValue={this.state.category} onValueChange={ (itemValue, itemIndex) => this.setState({ category: itemValue }) }>
