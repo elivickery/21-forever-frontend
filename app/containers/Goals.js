@@ -21,13 +21,13 @@ export default class Goal extends Component {
     })
     .then((response) => {
         console.log(response.data)
-        Actions.pop();
     })
     .catch(function (error) {
         console.log(error.response);
     });
     }
     render() { 
+        console.log(this.props.accessToken)
         return (
         <Container>
         <Picker selectedValue={this.state.category} onValueChange={ (itemValue, itemIndex) => this.setState({ category: itemValue }) }>
