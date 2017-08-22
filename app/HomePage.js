@@ -79,7 +79,7 @@ export default class make_it_happen_frontend extends Component {
 
  createGoal(category, new_goal){
    axios.post('https://make-it-happen-api.herokuapp.com/api/goals', {
-     category_id: Category.find_by(title: category),
+     category: category,
      title: new_goal
    })
   .then((response) => {
