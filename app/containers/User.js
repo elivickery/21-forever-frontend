@@ -114,6 +114,14 @@ export default class User extends Component {
         </ProgressCircle>
           {userInterface}
           {achievedGoals}
+        <Fab
+          active={this.state.active}
+          position="bottomRight"
+          onPress={() => Actions.popup()}
+          style={styles.actionButton}
+          >
+          <Icon large ios='ios-flame' android="md-flame" />
+        </Fab>
       </Container>
 
     )
