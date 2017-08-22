@@ -64,11 +64,11 @@ export default class Days extends Component {
         <Button block info
           style={[styles.hasmargin, this.state.completed ? styles.completed : null]}
           onPress={this.buttonPressComplete}
-        ><Text>Completed</Text></Button>
+        ><Text style={styles.whiteFont} >Completed</Text></Button>
         <Button block info
           style={[styles.hasmargin, this.state.failed ? styles.failed : null]}
           onPress={this.buttonPressInComplete}
-        ><Text>Not Completed</Text></Button>
+        ><Text style={styles.whiteFont} >Not Completed</Text></Button>
       </View>
     )
   }
@@ -94,5 +94,8 @@ const styles = StyleSheet.create({
   },
   hasmargin: {
     marginTop: 30
+  },
+  whiteFont: {
+    color: 'white'
   }
 })
