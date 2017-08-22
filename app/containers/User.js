@@ -10,8 +10,7 @@ export default class User extends Component {
     super(props)
     this.state = {
       achieved: [{}],
-      day: 0,
-      current: [{}]
+      day: 0
     }
   }
 
@@ -45,12 +44,25 @@ export default class User extends Component {
 
     });
 
+     axios.get("https://make-it-happen-api.herokuapp.com/api/goals/current", {
+      params: {
+        access_token: this.props.accessToken
+      }
+    })
+    .then((response)=> {
+      this.setState({
+        current: response.data
+      })
+    })
+    .catch(function (error) {
+
+    });
+
   }
 
 
   //link new goal button when new submit goal form is established.
   render () {
-    console.log(this.state.achieved[0])
     return (
       <Container style={styles.container}>
         <Title>My Progress</Title>
