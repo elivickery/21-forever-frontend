@@ -45,11 +45,17 @@ export default class make_it_happen_frontend extends Component {
         password: password
     })
     .then((response) => {
-      this.setState({
-        accessToken: response.data.accessToken,
-        logged_in: true
-      });
-      Actions.user({accessToken: this.state.accessToken});
+      if (response.data.found) {
+        this.setState({
+          accessToken: response.data.accessToken,
+          logged_in: true
+        });
+        Actions.user({accessToken: this.state.accessToken});
+      } else {
+        this.setState({
+          logged_in: false
+        });
+      }
     })
     .catch(function (error) {
       console.log(error.response);
