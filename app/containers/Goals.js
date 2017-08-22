@@ -9,7 +9,7 @@ export default class Goal extends Component {
         super(props)
         this.state = {
             new_goal: '',
-            category: ''
+            category: 'Health'
         }
         this.createGoal = this.createGoal.bind(this)
     }
