@@ -67,7 +67,8 @@ export default class User extends Component {
       <Container style={styles.container}>
         <Title>My Progress</Title>
 
-          {this.state.current ? <Days title={this.state.current.title} day={this.state.day} accessToken={this.props.accessToken}/> : <Button block info style={styles.hasmargin}><Text>Add A Goal</Text></Button>}
+          {this.state.current ? <Days title={this.state.current.title} day={this.state.day} accessToken={this.props.accessToken}/> : 
+          <Button block info style={styles.hasmargin} onPress={()=>{Actions.goals({accessToken: this.props.accessToken})}} ><Text>Add A Goal</Text></Button>}
           {this.state.achieved[0].title ? <Text style={styles.centeredgoals}> Achieved Goals </Text> : null}
 
           {this.state.achieved[0].title ?
