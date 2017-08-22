@@ -4,6 +4,8 @@ import {Actions} from 'react-native-router-flux'
 import Days from './Days'
 import axios from 'axios'
 import { ListItem, Icon, Container, Title, Item, Input, Content, Button, Footer, Text, List, Fab } from 'native-base';
+import ProgressCircle from 'react-native-progress-circle'
+
 
 export default class User extends Component {
   constructor(props){
@@ -66,12 +68,23 @@ export default class User extends Component {
 
   //link new goal button when new submit goal form is established.
   render () {
+        <ProgressCircle
+            percent={(this.state.day/21*100)}
+            radius={100}
+            borderWidth={10}
+            color="#00e0ff"
+            backgroundColor="#3d5875"
+            shadowColor="#999"
+        >
+        <Text style={{ fontSize: 40 }}>{this.state.day+'/21'}</Text>
+        </ProgressCircle>
 
     let userInterface;
 
     let achievedGoals;
 
     console.log(this.state.achieved)
+
 
     if(this.state.achieved[0]) {
       achievedGoals = (
