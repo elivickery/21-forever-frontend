@@ -22,7 +22,7 @@ export default class User extends Component {
     })
     .then((response) => {
       this.setState({
-        goals: response.data
+        achieved: response.data
       })
     })
     .catch(function (error) {
