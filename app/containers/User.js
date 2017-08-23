@@ -108,6 +108,11 @@ export default class User extends Component {
             onPress={() => this.setState({ active: !this.state.active })}>
             <Icon name="menu" />
               <Button
+                style={{ backgroundColor: '#FACA66' }}
+                onPress={() => Actions.profile({accessToken: this.props.accessToken})}>
+                <Icon name="person" />
+              </Button>
+              <Button
                 style={{ backgroundColor: 'grey' }}
                 onPress={() => Actions.main()}>
                 <Icon name="ios-log-out" />
