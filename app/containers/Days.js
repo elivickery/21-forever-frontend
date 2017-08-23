@@ -10,7 +10,8 @@ export default class Days extends Component {
     this.state = {
       accessToken: this.props.accessToken,
       completed: false,
-      failed: false
+      failed: false,
+      updateDayCount: 0
     }
     this.buttonPressComplete = this.buttonPressComplete.bind(this)
     this.buttonPressInComplete = this.buttonPressInComplete.bind(this)
@@ -29,12 +30,14 @@ export default class Days extends Component {
       if(response.data.complete == 'achieved') {
         this.setState({
           completed: true,
-          failed: false
+          failed: false,
+          updateDayCount: 1
         })
       } else if(response.data.complete == 'failed') {
         this.setState({
           completed: false,
-          failed: true
+          failed: true,
+          updateDayCount: 0
         })
       }
 
@@ -55,7 +58,8 @@ export default class Days extends Component {
       console.log(response);
       this.setState({
         completed: true,
-        failed: false
+        failed: false,
+        updateDayCount: 1
       });
     })
     .catch(function (error) {
@@ -72,7 +76,8 @@ export default class Days extends Component {
       console.log(response);
       this.setState({
         completed: false,
-        failed: true
+        failed: true,
+        updateDayCount: 0
       });
   })
     .catch(function (error) {
@@ -87,14 +92,14 @@ export default class Days extends Component {
       <View>
 
       <ProgressCircle
-            percent={((this.props.day - 1)/21*100)}
+            percent={((this.props.day - 1 + this.state.updateDayCount)/21*100)}
             radius={95}
             borderWidth={12}
             color="#00e0ff"
             backgroundColor="#3d5875"
             shadowColor="#999"
         >
-        <Text style={{ fontSize: 35 }}>{this.props.day-1+'/21\nDays'}</Text>
+        <Text style={{ fontSize: 35 }}>{(this.props.day - 1 + this.state.updateDayCount) + '/21\nDays'}</Text>
         </ProgressCircle>
         <Title>
           {this.props.title}
