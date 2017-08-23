@@ -4,7 +4,7 @@ import {
   Text,
   View,
   Button,
-  AlertIOS
+  Alert
 } from 'react-native';
 import {
   Router,
@@ -40,7 +40,6 @@ export default class make_it_happen_frontend extends Component {
 
 
   authenticateUser(email, password) {
-
     axios.post('https://make-it-happen-api.herokuapp.com/api/login', {
         email: email,
         password: password
@@ -56,6 +55,11 @@ export default class make_it_happen_frontend extends Component {
         this.setState({
           logged_in: false
         });
+        Alert.alert(
+          'Invalid input',
+          'Invalid username and/or password ',
+          [{text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'}]
+        )
       }
     })
     .catch(function (error) {
