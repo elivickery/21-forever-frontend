@@ -12,7 +12,7 @@ export default class Register extends Component {
       email: 'Enter your email',
       password: 'Enter your password'
     }
-    
+
     this.registerUser = this.registerUser.bind(this)
   }
 
@@ -24,7 +24,6 @@ export default class Register extends Component {
   render() {
   return (
     <Container style={styles.container}>
-      <Title>Register</Title>
       <Item>
         <Input
             placeholder="username"
