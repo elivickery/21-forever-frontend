@@ -4,13 +4,16 @@ import {Actions} from 'react-native-router-flux'
 import Days from './Days'
 import axios from 'axios'
 import { ListItem, Icon, Container, Title, Item, Input, Content, Button, Footer, Text, List, Fab } from 'native-base';
+import ProgressCircle from 'react-native-progress-circle'
+
 
 export default class User extends Component {
   constructor(props){
     super(props)
     this.state = {
-      achieved: [{}],
-      day: 0
+      achieved: [],
+      day: 0,
+      currentGoal: {}
     }
   }
 
@@ -50,9 +53,11 @@ export default class User extends Component {
       }
     })
     .then((response)=> {
+
       this.setState({
-        current: response.data
+        currentGoal: response.data[0]
       })
+
     })
     .catch(function (error) {
 
@@ -63,33 +68,60 @@ export default class User extends Component {
 
   //link new goal button when new submit goal form is established.
   render () {
+
+    let userInterface;
+
+    let achievedGoals;
+
+    console.log(this.state.achieved)
+
+
+    if(this.state.achieved[0]) {
+      achievedGoals = (
+        <Content>
+          <Title>Achieved Goals</Title>
+          <List dataArray={this.state.achieved}
+              renderRow={(item) =>
+                <ListItem>
+                  <Text>
+                  <Icon medium class={item.category_id} ios='ios-trophy' android='md-trophy'/>
+                  {item.title}</Text>
+                </ListItem>
+              }>
+            </List>
+          </Content>
+      )
+    }
+
+    if(this.state.currentGoal.title) {
+      userInterface = (<Days title={this.state.currentGoal.title} day={this.state.day} accessToken={this.props.accessToken}/>)
+    } else {
+      userInterface = (
+        <Button block info style={styles.hasmargin} onPress={()=>{Actions.goals({accessToken: this.props.accessToken})}} ><Text>Add A New Goal</Text></Button>)
+    }
+
     return (
       <Container style={styles.container}>
-        <Title>My Progress</Title>
-
-          {this.state.current ? <Days title={this.state.current.title} day={this.state.day} accessToken={this.props.accessToken}/> : 
-          <Button block info style={styles.hasmargin} onPress={()=>Actions.goals({accessToken: this.props.accessToken})} ><Text>Add A Goal</Text></Button>}
-          {this.state.achieved[0].title ? <Text style={styles.centeredgoals}> Achieved Goals </Text> : null}
-
-          {this.state.achieved[0].title ?
-          <List dataArray={this.state.achieved}
-            renderRow={(item) =>
-              <ListItem>
-                <Text>
-                <Icon medium class={item.category_id} ios='ios-trophy' android='md-trophy'/>
-                {item.title}</Text>
-              </ListItem>
-            }>
-          </List>
-          : null }
-          <Fab
-            active={this.state.active}
-            position="bottomRight"
-            onPress={() => Actions.popup()}
-            style={styles.actionButton}
-            >
-            <Icon large ios='ios-flame' android="md-flame" />
-          </Fab>
+        <ProgressCircle
+            percent={(this.state.day/21*100)}
+            radius={100}
+            borderWidth={10}
+            color="#00e0ff"
+            backgroundColor="#3d5875"
+            shadowColor="#999"
+        >
+        <Text style={{ fontSize: 40 }}>{this.state.day+'/21'}</Text>
+        </ProgressCircle>
+          {userInterface}
+          {achievedGoals}
+        <Fab
+          active={this.state.active}
+          position="bottomRight"
+          onPress={() => Actions.popup()}
+          style={styles.actionButton}
+          >
+          <Icon large ios='ios-flame' android="md-flame" />
+        </Fab>
       </Container>
 
     )
