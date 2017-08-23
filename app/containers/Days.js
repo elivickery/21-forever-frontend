@@ -87,7 +87,7 @@ export default class Days extends Component {
       <View>
 
       <ProgressCircle
-            percent={(this.props.day/21*100)}
+            percent={((this.props.day - 1)/21*100)}
             radius={95}
             borderWidth={12}
             color="#00e0ff"
