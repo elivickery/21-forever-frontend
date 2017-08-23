@@ -47,7 +47,7 @@ export default class Goal extends Component {
                 onChangeText={(new_goal) => this.setState({new_goal})}
             />
         </Item>
-        <Button block info style={styles.hasmargin} onPress={this.createGoal(this.state.category, this.state.new_goal)}>
+        <Button block info style={styles.hasmargin} onPress{this.createGoal()}>
             <Text>Create Goal</Text>
         </Button>
         </Container>
