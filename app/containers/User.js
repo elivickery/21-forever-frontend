@@ -4,8 +4,6 @@ import {Actions} from 'react-native-router-flux'
 import Days from './Days'
 import axios from 'axios'
 import { ListItem, Icon, Container, Title, Item, Input, Content, Button, Footer, Text, List, Fab } from 'native-base';
-import ProgressCircle from 'react-native-progress-circle'
-
 
 export default class User extends Component {
   constructor(props){
@@ -13,7 +11,8 @@ export default class User extends Component {
     this.state = {
       achieved: [],
       day: 0,
-      currentGoal: {}
+      currentGoal: {},
+      currentGif: 'https://media.giphy.com/media/3o85xtLX7zCyeeWGLC/giphy.gif'
     }
   }
 
@@ -55,7 +54,8 @@ export default class User extends Component {
     .then((response)=> {
 
       this.setState({
-        currentGoal: response.data[0]
+        currentGoal: response.data.current_goal,
+        currentGif: response.data.gifs_sample
       })
 
     })
@@ -102,23 +102,26 @@ export default class User extends Component {
 
     return (
       <Container style={styles.container}>
-        <ProgressCircle
-            percent={(this.state.day/21*100)}
-            radius={100}
-            borderWidth={10}
-            color="#00e0ff"
-            backgroundColor="#3d5875"
-            shadowColor="#999"
-        >
-        <Text style={{ fontSize: 40 }}>{this.state.day+'/21'}</Text>
-        </ProgressCircle>
+        <Fab
+            active={this.state.active}
+            direction="down"
+            style={{ backgroundColor: '#6A5ACD' }}
+            position="topRight"
+            onPress={() => this.setState({ active: !this.state.active })}>
+            <Icon name="menu" />
+              <Button
+                style={{ backgroundColor: 'grey' }}
+                onPress={() => Actions.main()}>
+                <Icon name="ios-log-out" />
+              </Button>
+          </Fab>
           {userInterface}
           {achievedGoals}
         <Fab
           active={this.state.active}
           position="bottomRight"
-          onPress={() => Actions.popup()}
-          style={styles.actionButton}
+          onPress={() => Actions.popup({gif: this.state.currentGif})}
+          style={styles.fireButton}
           >
           <Icon large ios='ios-flame' android="md-flame" />
         </Fab>
@@ -146,7 +149,7 @@ const styles = StyleSheet.create({
     marginRight: 30,
     marginTop: 30
   },
-  actionButton: {
+  fireButton: {
     backgroundColor: "#FFA500"
   }
 })

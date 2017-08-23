@@ -23,7 +23,6 @@ export default class Login extends Component {
   render() {
   return (
     <Container style={styles.container}>
-      <Title>Log In</Title>
       <Item>
         <Input
           placeholder="email"

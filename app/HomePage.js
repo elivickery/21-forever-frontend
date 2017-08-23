@@ -116,6 +116,7 @@ export default class make_it_happen_frontend extends Component {
             hideNavBar
             title="Make It Happen"
             initial={!this.state.logged_in}
+            panHandlers={null}
           />
           <Scene
             key="user"
@@ -124,6 +125,7 @@ export default class make_it_happen_frontend extends Component {
             title="My Goals"
             initial={this.state.logged_in}
             accessToken={this.state.accessToken}
+            panHandlers={null}
           />
           <Scene
             key="profile"
@@ -135,7 +137,6 @@ export default class make_it_happen_frontend extends Component {
           <Scene
             key="login"
             component={Login}
-            hideNavBar
             title="Login"
             authenticateUser={this.authenticateUser}
           />
@@ -143,25 +144,20 @@ export default class make_it_happen_frontend extends Component {
             key="register"
             component={Register}
             title="Register"
-            hideNavBar
             createUser={this.createUser}
-          />
-          <Scene
-            key="user"
-            component={User}
-            title="My Goals"
-            initial={this.state.logged_in}
-            accessToken={this.state.accessToken}
           />
           <Scene
             key="goals"
             component={Goal}
             title="New Goal"
-
+            hideNavBar
           />
       </Scene>
-
-      <Scene key="popup" component={Popup} title="Keep Going!" />
+      <Scene
+        key="popup"
+        component={Popup}
+        title="Keep Going!"
+      />
     </Modal>
 
     </Router>
