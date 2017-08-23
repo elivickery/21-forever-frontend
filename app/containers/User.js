@@ -11,7 +11,8 @@ export default class User extends Component {
     this.state = {
       achieved: [],
       day: 0,
-      currentGoal: {}
+      currentGoal: {},
+      currentGif: 'https://media.giphy.com/media/3o85xtLX7zCyeeWGLC/giphy.gif'
     }
   }
 
@@ -53,7 +54,8 @@ export default class User extends Component {
     .then((response)=> {
 
       this.setState({
-        currentGoal: response.data[0]
+        currentGoal: response.data.current_goal,
+        currentGif: response.data.gifs_sample
       })
 
     })
@@ -118,7 +120,7 @@ export default class User extends Component {
         <Fab
           active={this.state.active}
           position="bottomRight"
-          onPress={() => Actions.popup()}
+          onPress={() => Actions.popup({gif: this.state.currentGif})}
           style={styles.fireButton}
           >
           <Icon large ios='ios-flame' android="md-flame" />

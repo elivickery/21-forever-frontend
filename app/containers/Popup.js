@@ -7,7 +7,7 @@ export default class Popup extends Component {
   render () {
     return (
       <Container style={styles.backwall}>
-        <Image source={{uri: 'https://media.giphy.com/media/3o85xtLX7zCyeeWGLC/giphy.gif'}}
+        <Image source={{uri: this.props.gif}}
         style={styles.gif}/>
         <Fab large
           position="topRight"
