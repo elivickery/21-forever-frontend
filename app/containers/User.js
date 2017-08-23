@@ -73,8 +73,6 @@ export default class User extends Component {
 
     let achievedGoals;
 
-    console.log(this.state.achieved)
-
 
     if(this.state.achieved[0]) {
       achievedGoals = (
