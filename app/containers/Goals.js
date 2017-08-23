@@ -19,7 +19,8 @@ export default class Goal extends Component {
         title: this.state.new_goal,
         access_token: this.props.accessToken
     })
-    .then(() => {
+    .then((response) => {
+        console.log(response.data)
         Actions.user()
     })
     .catch(function (error) {
@@ -43,11 +44,11 @@ export default class Goal extends Component {
                 returnKeyType="next"
                 keyboardType="ascii-capable"
                 autoCapitalize="none"
-                autoCorrect={true}
+                autoCorrect={false}
                 onChangeText={(new_goal) => this.setState({new_goal})}
             />
         </Item>
-        <Button block info style={styles.hasmargin} onPress{this.createGoal()}>
+        <Button block info style={styles.hasmargin} onPress={this.createGoal}>
             <Text>Create Goal</Text>
         </Button>
         </Container>
