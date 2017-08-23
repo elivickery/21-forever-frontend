@@ -102,14 +102,36 @@ export default class User extends Component {
 
     return (
       <Container style={styles.container}>
-
+        <Fab
+            active={this.state.active}
+            direction="down"
+            style={{ backgroundColor: '#6A5ACD' }}
+            position="topRight"
+            onPress={() => this.setState({ active: !this.state.active })}>
+            <Icon name="menu" />
+              <Button
+                style={{ backgroundColor: 'grey' }}
+                onPress={() => Actions.main()}>
+                <Icon name="ios-log-out" />
+              </Button>
+          </Fab>
+        <ProgressCircle
+            percent={(this.state.day/21*100)}
+            radius={100}
+            borderWidth={10}
+            color="#00e0ff"
+            backgroundColor="#3d5875"
+            shadowColor="#999"
+        >
+        <Text style={{ fontSize: 40 }}>{this.state.day+'/21'}</Text>
+        </ProgressCircle>
           {userInterface}
           {achievedGoals}
         <Fab
           active={this.state.active}
           position="bottomRight"
           onPress={() => Actions.popup()}
-          style={styles.actionButton}
+          style={styles.fireButton}
           >
           <Icon large ios='ios-flame' android="md-flame" />
         </Fab>
@@ -137,7 +159,7 @@ const styles = StyleSheet.create({
     marginRight: 30,
     marginTop: 30
   },
-  actionButton: {
+  fireButton: {
     backgroundColor: "#FFA500"
   }
 })
