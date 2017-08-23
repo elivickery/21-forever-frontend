@@ -102,16 +102,7 @@ export default class User extends Component {
 
     return (
       <Container style={styles.container}>
-        <ProgressCircle
-            percent={(this.state.day/21*100)}
-            radius={100}
-            borderWidth={10}
-            color="#00e0ff"
-            backgroundColor="#3d5875"
-            shadowColor="#999"
-        >
-        <Text style={{ fontSize: 40 }}>{this.state.day+'/21'}</Text>
-        </ProgressCircle>
+
           {userInterface}
           {achievedGoals}
         <Fab
