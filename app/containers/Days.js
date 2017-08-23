@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { Title, Button } from 'native-base'
 import axios from 'axios'
+import ProgressCircle from 'react-native-progress-circle'
 
 export default class Days extends Component {
   constructor(props) {
@@ -55,12 +56,21 @@ export default class Days extends Component {
   render () {
     return (
       <View>
+
+      <ProgressCircle
+            percent={(this.props.day/21*100)}
+            radius={95}
+            borderWidth={12}
+            color="#00e0ff"
+            backgroundColor="#3d5875"
+            shadowColor="#999"
+        >
+        <Text style={{ fontSize: 35 }}>{this.props.day+'/21\nDays'}</Text>
+        </ProgressCircle>
         <Title>
           {this.props.title}
         </Title>
-        <Text style={styles.day}>
-          {this.props.day}/21 Days
-        </Text>
+
         <Button block info
           style={[styles.hasmargin, this.state.completed ? styles.completed : null]}
           onPress={this.buttonPressComplete}
