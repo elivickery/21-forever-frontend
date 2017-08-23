@@ -65,7 +65,7 @@ export default class Days extends Component {
             backgroundColor="#3d5875"
             shadowColor="#999"
         >
-        <Text style={{ fontSize: 35 }}>{this.props.day+'/21\nDays'}</Text>
+        <Text style={{ fontSize: 35 }}>{this.props.day-1+'/21\nDays'}</Text>
         </ProgressCircle>
         <Title>
           {this.props.title}
