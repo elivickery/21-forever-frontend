@@ -21,7 +21,7 @@ export default class Goal extends Component {
     })
     .then((response) => {
         console.log(response.data)
-        Actions.user()
+        Actions.user({accessToken: this.props.accessToken})
     })
     .catch(function (error) {
         console.log(error.response);
