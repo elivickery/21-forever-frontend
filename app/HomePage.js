@@ -126,7 +126,7 @@ export default class make_it_happen_frontend extends Component {
           <Scene key="main"
             component={Main}
             hideNavBar
-            title="Make It Happen"
+            title="21 Forever"
             initial={!this.state.logged_in}
             panHandlers={null}
           />
