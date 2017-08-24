@@ -1,7 +1,8 @@
 import React, { PropTypes, Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import { Title, Button } from 'native-base'
+import { Content, Title, Button } from 'native-base'
 import axios from 'axios'
+import { Actions } from 'react-native-router-flux'
 import ProgressCircle from 'react-native-progress-circle'
 
 export default class Days extends Component {
@@ -16,35 +17,6 @@ export default class Days extends Component {
     this.buttonPressInComplete = this.buttonPressInComplete.bind(this)
   }
 
-  componentWillMount() {
-
-    axios.get("https://make-it-happen-api.herokuapp.com/api/days/current", {
-      params: {
-        access_token: this.props.accessToken
-      }
-    })
-    .then((response)=> {
-      console.log(response.data)
-
-      if(response.data.complete == 'achieved') {
-        this.setState({
-          completed: true,
-          failed: false
-        })
-      } else if(response.data.complete == 'failed') {
-        this.setState({
-          completed: false,
-          failed: true
-        })
-      }
-
-    })
-    .catch(function (error) {
-
-    });
-
-  }
-
   //Sends and changes status. Check heroku logs.
   buttonPressComplete(){
     axios.put('https://make-it-happen-api.herokuapp.com/api/days/edit', {
@@ -57,6 +29,9 @@ export default class Days extends Component {
         completed: true,
         failed: false
       });
+      if(this.props.day === 21) {
+        Actions.completionpage({accessToken: this.props.accessToken});
+      }
     })
     .catch(function (error) {
 
@@ -83,11 +58,28 @@ export default class Days extends Component {
 
 
   render () {
+
+    let buttonInterface;
+    console.log(this.props.day)
+    if(this.props.day < 22) {
+    buttonInterface = (
+          <Content>
+          <Button block info
+          style={[styles.hasmargin, this.state.completed ? styles.completed : null]}
+          onPress={this.buttonPressComplete}
+        ><Text style={styles.whiteFont} >Completed</Text></Button>
+        <Button block info
+          style={[styles.hasmargin, this.state.failed ? styles.failed : null]}
+          onPress={this.buttonPressInComplete}
+        ><Text style={styles.whiteFont} >Not Completed</Text></Button>
+        </Content>
+        )
+      }
     return (
       <View>
 
       <ProgressCircle
-            percent={((this.props.day - 1)/21*100)}
+            percent={((this.props.day-1)/21*100)}
             radius={95}
             borderWidth={12}
             color="#00e0ff"
@@ -100,14 +92,8 @@ export default class Days extends Component {
           {this.props.title}
         </Title>
 
-        <Button block info
-          style={[styles.hasmargin, this.state.completed ? styles.completed : null]}
-          onPress={this.buttonPressComplete}
-        ><Text style={styles.whiteFont} >Completed</Text></Button>
-        <Button block info
-          style={[styles.hasmargin, this.state.failed ? styles.failed : null]}
-          onPress={this.buttonPressInComplete}
-        ><Text style={styles.whiteFont} >Not Completed</Text></Button>
+        {buttonInterface}
+
       </View>
     )
   }
