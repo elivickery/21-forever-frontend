@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, AlertIOS } from 'react-native';
+import { StyleSheet, Alert } from 'react-native';
 import { Container, Title, Item, Input, Content, Button, Text } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
@@ -14,11 +14,36 @@ export default class Register extends Component {
     }
 
     this.registerUser = this.registerUser.bind(this)
+    this.findUser = this.findUser.bind(this)
+  }
+
+  findUser(){
+    let userExists
+    axios.get("https://make-it-happen-api.herokuapp.com/api/verify", {
+      params: {
+        email: this.state.email
+      }
+    })
+    .then((response)=> {
+      userExists = true
+    })
+    .catch(function (error) {
+
+    });
+    return userExists
   }
 
 
   registerUser(){
-    this.props.createUser(this.state.username, this.state.email, this.state.password)
+    if(this.findUser) {
+      Alert.alert(
+        'Email already exists',
+        '',
+        [{text: 'OK', onPress: () => console.log('OK Pressed')}]
+      )
+    } else {
+      this.props.createUser(this.state.username, this.state.email, this.state.password)
+    }
   }
 
   render() {
