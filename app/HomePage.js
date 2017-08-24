@@ -36,6 +36,7 @@ export default class make_it_happen_frontend extends Component {
 
     this.authenticateUser = this.authenticateUser.bind(this)
     this.createUser = this.createUser.bind(this)
+    this.updateUser = this.updateUser.bind(this)
   }
 
 
@@ -87,10 +88,10 @@ export default class make_it_happen_frontend extends Component {
     });
  }
 
- updateUser(email, password) {
+ updateUser(email, password, token) {
 
-    axios.post('https://make-it-happen-api.herokuapp.com/api/users/', {
-        accessToken: response.data.accessToken,
+    axios.put('https://make-it-happen-api.herokuapp.com/api/users/update', {
+        access_token: token,
         email: email,
         password: password
     })
@@ -99,7 +100,12 @@ export default class make_it_happen_frontend extends Component {
         accessToken: response.data.accessToken,
         logged_in: true
       });
-      Actions.user();
+      Alert.alert(
+        'Update Successful',
+        '',
+        [{text: 'OK', onPress: () => console.log('OK Pressed')}]
+      )
+      Actions.user({accessToken: this.state.accessToken});
     })
     .catch(function (error) {
       console.log(error.response);
