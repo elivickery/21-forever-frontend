@@ -17,6 +17,38 @@ export default class Days extends Component {
     this.buttonPressInComplete = this.buttonPressInComplete.bind(this)
   }
 
+
+componentWillMount() {
+
+    axios.get("https://make-it-happen-api.herokuapp.com/api/days/current", {
+      params: {
+        access_token: this.props.accessToken
+      }
+    })
+    .then((response)=> {
+      console.log(response.data)
+
+      if(response.data.complete == 'achieved') {
+        this.setState({
+          completed: true,
+          failed: false,
+          updateDayCount: 1
+        })
+      } else if(response.data.complete == 'failed') {
+        this.setState({
+          completed: false,
+          failed: true,
+          updateDayCount: 0
+        })
+      }
+
+    })
+    .catch(function (error) {
+
+    });
+
+  }
+
   //Sends and changes status. Check heroku logs.
   buttonPressComplete(){
     axios.put('https://make-it-happen-api.herokuapp.com/api/days/edit', {
@@ -58,7 +90,6 @@ export default class Days extends Component {
 
 
   render () {
-
     return (
     <Content>
         <Text style={styles.goalTitle}>
