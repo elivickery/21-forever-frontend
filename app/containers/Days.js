@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import { View, StyleSheet } from 'react-native'
-import { Text, Content, Container, Title, Button } from 'native-base'
+import { Text, Content, Container, Title, Button, Card } from 'native-base'
 import axios from 'axios'
 import { Actions } from 'react-native-router-flux'
 import ProgressCircle from 'react-native-progress-circle'
@@ -92,10 +92,12 @@ componentWillMount() {
   render () {
     return (
     <Content>
+      <Card transparent style={styles.card}>
         <Text style={styles.goalTitle}>
           {this.props.title}
         </Text>
-
+      </Card>
+      <Card transparent style={styles.card}>
       <ProgressCircle
             percent={((this.props.day-1)/21*100)}
             radius={95}
@@ -106,16 +108,19 @@ componentWillMount() {
         >
         <Text style={{ fontSize: 35 }}>{this.props.day-1+'/21\nDays'}</Text>
         </ProgressCircle>
-
+        </Card>
+        <Card transparent style={styles.card}>
           <Button block info
           style={[styles.hasmargin, this.state.completed ? styles.completed : null]}
           onPress={this.buttonPressComplete}
         ><Text style={styles.buttontext} >COMPLETED</Text></Button>
+        </Card>
+        <Card transparent style={styles.card}>
         <Button block info
           style={[styles.hasmargin, this.state.failed ? styles.failed : null]}
           onPress={this.buttonPressInComplete}
         ><Text style={styles.buttontext} >NOT COMPLETED</Text></Button>
-
+        </Card>
       </Content>
     )
   }
@@ -146,6 +151,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue'
   },
   hasmargin: {
+    marginLeft: 30,
+    marginRight: 30,
     marginTop: 30,
     backgroundColor: '#ffdf45'
   },
@@ -157,5 +164,9 @@ const styles = StyleSheet.create({
     marginTop: 80,
     marginBottom: 30,
     textAlign: 'center',
+  },
+  card: {
+    alignItems: 'center',
+    borderColor: '#ffffff'
   }
 })

@@ -50,7 +50,7 @@ export default class Profile extends Component {
           />
          </Item>
         <Button block info style={styles.hasmargin} onPress={this.editUser}>
-          <Text style={styles.buttontext}>Update</Text>
+          <Text style={styles.buttontext}>UPDATE</Text>
         </Button>
     </Container>
   );
