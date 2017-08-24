@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Image,
   StyleSheet,
   View
 } from 'react-native';
@@ -11,7 +12,9 @@ export default class Main extends Component {
   render() {
   return (
     <Container style={styles.container}>
-      <Title>Make It Happen</Title>
+        <Image
+          source={require('././logo.png')}
+        />
         <Button block info style={styles.hasmargin} onPress={() => Actions.login()}>
           <Text>Log In</Text>
         </Button>
@@ -28,13 +31,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#eee',
-  },
-  welcome: {
-    fontSize: 30,
-    textAlign: 'center',
-    margin: 10,
-    color: '#000',
+    backgroundColor: '#fff',
   },
   hasmargin: {
     marginLeft: 30,

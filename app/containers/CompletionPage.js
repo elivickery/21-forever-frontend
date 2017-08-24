@@ -64,13 +64,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  centeredgoals: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 20,
-    justifyContent:'center',
-    marginBottom: 10
-  },
   hasmargin: {
     marginLeft: 30,
     marginRight: 30,
