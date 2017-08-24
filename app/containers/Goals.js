@@ -49,7 +49,7 @@ export default class Goal extends Component {
             />
         </Item>
         <Button block info style={styles.hasmargin} onPress={this.createGoal}>
-            <Text>Create Goal</Text>
+            <Text style={this.buttontext}>Create Goal</Text>
         </Button>
         </Container>
         )
@@ -78,7 +78,11 @@ const styles = StyleSheet.create({
   hasmargin: {
     marginLeft: 30,
     marginRight: 30,
-    marginTop: 30
+    marginTop: 30,
+    backgroundColor: '#ffdf45'
+  },
+  buttontext: {
+    color: '#000000'
   }
 });
 
