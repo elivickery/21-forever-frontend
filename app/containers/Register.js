@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Alert } from 'react-native';
 import { Container, Title, Item, Input, Content, Button, Text } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import axios from 'axios';
 
 export default class Register extends Component {
 
@@ -10,7 +11,7 @@ export default class Register extends Component {
     this.state = {
       username: 'Enter your username',
       email: 'Enter your email',
-      password: 'Enter your password'
+      password: 'Enter your password',
     }
 
     this.registerUser = this.registerUser.bind(this)
@@ -18,32 +19,29 @@ export default class Register extends Component {
   }
 
   findUser(){
-    let userExists
     axios.get("https://make-it-happen-api.herokuapp.com/api/verify", {
       params: {
         email: this.state.email
       }
     })
     .then((response)=> {
-      userExists = true
+      if(response.data.found) {
+          Alert.alert(
+          'Email already exists',
+          '',
+          [{text: 'OK', onPress: () => console.log('OK Pressed')}]
+        )
+      } else {
+        this.registerUser()
+      }
     })
     .catch(function (error) {
 
     });
-    return userExists
   }
 
-
   registerUser(){
-    if(this.findUser) {
-      Alert.alert(
-        'Email already exists',
-        '',
-        [{text: 'OK', onPress: () => console.log('OK Pressed')}]
-      )
-    } else {
-      this.props.createUser(this.state.username, this.state.email, this.state.password)
-    }
+    this.props.createUser(this.state.username, this.state.email, this.state.password)
   }
 
   render() {
@@ -85,7 +83,7 @@ export default class Register extends Component {
         />
       </Item>
 
-       <Button block info style={styles.hasmargin} onPress={this.registerUser}>
+       <Button block info style={styles.hasmargin} onPress={this.findUser}>
          <Text style={styles.buttontext}>REGISTER</Text>
         </Button>
     </Container>
