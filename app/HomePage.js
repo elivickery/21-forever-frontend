@@ -21,6 +21,7 @@ import Main from './containers/Main';
 import Popup from './containers/Popup'
 import Goal from './containers/Goals'
 import Profile from './containers/Profile';
+import CompletionPage from './containers/CompletionPage'
 
 
 export default class make_it_happen_frontend extends Component {
@@ -155,6 +156,13 @@ export default class make_it_happen_frontend extends Component {
             component={Goal}
             title="New Goal"
             hideNavBar
+          />
+          <Scene
+            key="completionpage"
+            component={CompletionPage}
+            title="Completion Page"
+            hideNavBar
+            // initial
           />
       </Scene>
       <Scene
