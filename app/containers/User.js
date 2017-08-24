@@ -139,13 +139,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  centeredgoals: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 20,
-    justifyContent:'center',
-    marginBottom: 10
+    backgroundColor: '#fff',
   },
   hasmargin: {
     marginLeft: 30,

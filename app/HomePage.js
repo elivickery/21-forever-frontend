@@ -22,6 +22,7 @@ import Popup from './containers/Popup'
 import Goal from './containers/Goals'
 import Profile from './containers/Profile';
 import CompletionPage from './containers/CompletionPage'
+import Splashpage from './containers/Splashpage'
 
 
 export default class make_it_happen_frontend extends Component {
@@ -188,16 +189,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    backgroundColor: '#fff'
+  }
 });
