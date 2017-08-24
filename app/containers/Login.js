@@ -48,7 +48,7 @@ export default class Login extends Component {
           />
          </Item>
         <Button block info style={styles.hasmargin} onPress={this.loginUser}>
-          <Text>Log In</Text>
+          <Text style={styles.buttontext}>LOG IN</Text>
         </Button>
     </Container>
   );
@@ -77,6 +77,10 @@ const styles = StyleSheet.create({
   hasmargin: {
     marginLeft: 30,
     marginRight: 30,
-    marginTop: 30
+    marginTop: 30,
+    backgroundColor: '#ffdf45'
+  },
+  buttontext: {
+    color: '#000000'
   }
 });

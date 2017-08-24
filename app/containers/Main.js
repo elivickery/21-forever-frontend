@@ -15,11 +15,11 @@ export default class Main extends Component {
         <Image
           source={require('././logo.png')}
         />
-        <Button block info style={styles.hasmargin} onPress={() => Actions.login()}>
-          <Text>Log In</Text>
+        <Button block style={styles.hasmargin} onPress={() => Actions.login()}>
+          <Text style={styles.buttontext}>LOG IN</Text>
         </Button>
-        <Button block info style={styles.hasmargin} onPress={() => Actions.register()}>
-          <Text>Register</Text>
+        <Button block style={styles.hasmargin} onPress={() => Actions.register()}>
+          <Text style={styles.buttontext}>REGISTER</Text>
         </Button>
     </Container>
   );
@@ -31,12 +31,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#fff'
   },
   hasmargin: {
     marginLeft: 30,
     marginRight: 30,
-    marginTop: 30
+    marginTop: 30,
+    backgroundColor: '#ffdf45'
+  },
+  buttontext: {
+    color: '#000000'
   }
 
 });
