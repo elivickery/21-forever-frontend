@@ -22,6 +22,7 @@ import Popup from './containers/Popup'
 import Goal from './containers/Goals'
 import Profile from './containers/Profile';
 import CompletionPage from './containers/CompletionPage'
+import Splashpage from './containers/Splashpage'
 
 
 export default class make_it_happen_frontend extends Component {
