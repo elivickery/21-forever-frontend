@@ -50,7 +50,7 @@ export default class Profile extends Component {
           />
          </Item>
         <Button block info style={styles.hasmargin} onPress={this.editUser}>
-          <Text>Update</Text>
+          <Text style={styles.buttontext}>Update</Text>
         </Button>
     </Container>
   );
@@ -74,6 +74,10 @@ const styles = StyleSheet.create({
   hasmargin: {
     marginLeft: 30,
     marginRight: 30,
-    marginTop: 30
+    marginTop: 30,
+    backgroundColor: '#ffdf45'
+  },
+  buttontext: {
+    color: '#000000'
   }
 });

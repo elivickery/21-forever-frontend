@@ -76,7 +76,7 @@ export default class User extends Component {
 
     if(this.state.achieved[0]) {
       achievedGoals = (
-        <Content>
+        <Content style={styles.topmargin}>
           <Title>Achieved Goals</Title>
           <List dataArray={this.state.achieved}
               renderRow={(item) =>
@@ -95,11 +95,16 @@ export default class User extends Component {
       userInterface = (<Days title={this.state.currentGoal.title} day={this.state.day} accessToken={this.props.accessToken}/>)
     } else {
       userInterface = (
-        <Button block info style={styles.hasmargin} onPress={()=>{Actions.goals({accessToken: this.props.accessToken})}} ><Text>Add A New Goal</Text></Button>)
+        <Button block info style={styles.hasmargin} onPress={()=>{Actions.goals({accessToken: this.props.accessToken})}} ><Text style={styles.buttontext}>ADD A NEW GOAL</Text></Button>)
     }
 
     return (
       <Container style={styles.container}>
+
+          <Content>
+          {userInterface}
+          {achievedGoals}
+          </Content>
         <Fab
             active={this.state.active}
             direction="down"
@@ -118,8 +123,6 @@ export default class User extends Component {
                 <Icon name="ios-log-out" />
               </Button>
           </Fab>
-          {userInterface}
-          {achievedGoals}
         <Fab
           active={this.state.active}
           position="bottomRight"
@@ -144,9 +147,16 @@ const styles = StyleSheet.create({
   hasmargin: {
     marginLeft: 30,
     marginRight: 30,
-    marginTop: 30
+    marginTop: 30,
+    backgroundColor: '#ffdf45'
+  },
+  buttontext: {
+    color: '#000000'
   },
   fireButton: {
     backgroundColor: "#FFA500"
+  },
+  topmargin: {
+    marginTop: 20
   }
 })
