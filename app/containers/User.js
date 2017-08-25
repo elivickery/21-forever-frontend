@@ -113,9 +113,9 @@ export default class User extends Component {
             onPress={() => this.setState({ active: !this.state.active })}>
             <Icon name="menu" />
               <Button
-                style={{ backgroundColor: '#FACA66' }}
+                style={{ backgroundColor: '#ffdf45' }}
                 onPress={() => Actions.profile({accessToken: this.props.accessToken})}>
-                <Icon name="person" />
+                <Icon name="person" style={{color: 'black'}}/>
               </Button>
               <Button
                 style={{ backgroundColor: 'grey' }}
@@ -129,7 +129,7 @@ export default class User extends Component {
           onPress={() => Actions.popup({gif: this.state.currentGif})}
           style={styles.fireButton}
           >
-          <Icon large ios='ios-flame' android="md-flame" />
+          <Icon large ios='ios-flame' android="md-flame" style={{color: 'black'}}/>
         </Fab>
       </Container>
 
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     color: '#000000'
   },
   fireButton: {
-    backgroundColor: "#FFA500"
+    backgroundColor: "#ffdf45"
   },
   topmargin: {
     marginTop: 20

@@ -102,7 +102,7 @@ componentWillMount() {
             percent={((this.props.day-1)/21*100)}
             radius={95}
             borderWidth={12}
-            color="#00e0ff"
+            color="#6A5ACD"
             bgColor="#fff"
             shadowColor="#999"
         >
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'red'
   },
   completed: {
-    backgroundColor: 'green'
+    backgroundColor: '#00a800'
   },
   base: {
     backgroundColor: 'blue'
