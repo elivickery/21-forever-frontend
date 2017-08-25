@@ -31,7 +31,7 @@ export default class Splashpage extends Component {
             }}
             style={{
               width: 400,
-              height: 600
+              height: 370
             }}
             loop={true}
             source={GoalImg}
@@ -46,8 +46,6 @@ export default class Splashpage extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'center'
   }
 });
