@@ -154,6 +154,7 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     marginRight: 30,
     marginTop: 260,
+    marginBottom: 30,
     backgroundColor: '#ffdf45'
   },
   buttontext: {
