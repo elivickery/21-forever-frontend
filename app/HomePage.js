@@ -169,7 +169,6 @@ export default class make_it_happen_frontend extends Component {
             component={CompletionPage}
             title="Completion Page"
             hideNavBar
-            // initial
           />
       </Scene>
       <Scene

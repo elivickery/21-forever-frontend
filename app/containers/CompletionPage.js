@@ -4,6 +4,7 @@ import {Actions} from 'react-native-router-flux'
 import Days from './Days'
 import axios from 'axios'
 import { ListItem, Icon, Container, Title, Item, Input, Content, Button, Footer, Text, List, Fab } from 'native-base';
+import Splashpage from './Splashpage'
 
 export default class User extends Component {
   constructor(props){
@@ -37,21 +38,14 @@ export default class User extends Component {
   //link new goal button when new submit goal form is established.
   render () {
     let userInterface;
-    let achievedContent;
-
-    achievedContent = (
-        <Content>
-          <Title>You Did It!</Title>
-          <Button info onPress={()=>Actions.user({accessToken: this.props.accessToken})}><Text>Go Back</Text></Button>
-          </Content>
-      )
 
     userInterface = (<Days title={this.state.currentGoal.title} day={22} accessToken={this.props.accessToken}/>)
 
     return (
       <Container style={styles.container}>
-          {userInterface}
-          {achievedContent}
+        <Text style={styles.xbutton} onPress={() => Actions.user()}>X</Text>
+        <Title style={styles.goalTitle}>You Did It!</Title>
+        <Splashpage/>
       </Container>
 
     )
@@ -68,9 +62,21 @@ const styles = StyleSheet.create({
   hasmargin: {
     marginLeft: 30,
     marginRight: 30,
-    marginTop: 30
+    marginTop: 30,
+
   },
   fireButton: {
     backgroundColor: "#FFA500"
+  },
+  goalTitle: {
+    fontSize: 40,
+    marginTop: 0,
+    textAlign: 'center',
+  },
+  xbutton: {
+    alignSelf: 'flex-end',
+    marginTop: -20,
+    marginRight: 20,
+    fontSize: 20
   }
 })
