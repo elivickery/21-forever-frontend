@@ -49,7 +49,7 @@ export default class Goal extends Component {
             />
         </Item>
         <Button block info style={styles.hasmargin} onPress={this.createGoal}>
-            <Text style={this.buttontext}>Create Goal</Text>
+            <Text style={styles.buttontext}>CREATE GOAL</Text>
         </Button>
         </Container>
         )

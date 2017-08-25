@@ -95,7 +95,7 @@ export default class User extends Component {
       userInterface = (<Days title={this.state.currentGoal.title} day={this.state.day} accessToken={this.props.accessToken}/>)
     } else {
       userInterface = (
-        <Button block info style={styles.hasmargin} onPress={()=>{Actions.goals({accessToken: this.props.accessToken})}} ><Text style={styles.buttontext}>ADD A NEW GOAL</Text></Button>)
+        <Button block info style={styles.hasmarginnewgoal} onPress={()=>{Actions.goals({accessToken: this.props.accessToken})}} ><Text style={styles.buttontext}>ADD A NEW GOAL</Text></Button>)
     }
 
     return (
@@ -148,6 +148,13 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     marginRight: 30,
     marginTop: 30,
+    backgroundColor: '#ffdf45'
+  },
+  hasmarginnewgoal: {
+    marginLeft: 30,
+    marginRight: 30,
+    marginTop: 260,
+    marginBottom: 30,
     backgroundColor: '#ffdf45'
   },
   buttontext: {
