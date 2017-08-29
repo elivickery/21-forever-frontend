@@ -1,4 +1,4 @@
-# make-it-happen-frontend
+# 21-forever-frontend
 
 21Forever is a simple, sleek habit tracking iOS app that encourages users to set small goals and build 21-day habit streaks.
 
